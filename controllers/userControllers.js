@@ -1,33 +1,41 @@
-const session = require("express-session");
-const User = require("../models/User");
+'use strict';
+const User = require('../models/User');
 
-// GET METHODS
+exports.mustBeLoggedIn = function (req, res, next) {
+	if (req.session.user) {
+		next();
+	} else {
+		req.flash('errors', 'You must be logged in to perform this action.');
+		req.session.save(() => res.redirect('/'));
+	}
+};
+
 exports.resetpasswordPage = function (req, res) {
-	res.render("./pages/ResetPasswordPage", { title: ": Express" });
+	res.render('pages/ResetPasswordPage', { title: ': Express' });
 };
 
 exports.articleDetailPage = function (req, res) {
-	res.render("./pages/ArticleDetailPage/ArticleDetailPage.ejs", { title: ": Express" });
+	res.render('pages/ArticleDetailPage/ArticleDetailPage', { title: ': Express' });
 };
 
 exports.aboutPage = function (req, res) {
-	res.render("./pages/AboutPage", { title: ": Express" });
+	res.render('pages/AboutPage', { title: ': Express' });
 };
 
 exports.contactPage = function (req, res) {
-	res.render("./pages/ContactPage", { title: ": Express" });
+	res.render('pages/ContactPage', { title: ': Express' });
 };
 
 exports.faqsPage = function (req, res) {
-	res.render("./pages/FAQ.ejs", { title: ": Express" });
+	res.render('pages/FAQ', { title: ': Express' });
 };
 
 exports.pricingPage = function (req, res) {
-	res.render("./pages/pricingPage.ejs", { title: ": Express" });
+	res.render('pages/pricingPage', { title: ': Express' });
 };
 
 exports.logout = function (req, res) {
-	req.session.destroy(() => res.redirect("/"));
+	req.session.destroy(() => res.redirect('/'));
 };
 
 exports.login = async function (req, res) {
@@ -36,22 +44,26 @@ exports.login = async function (req, res) {
 	user
 		.login()
 		.then((attemptedUser) => {
-			req.session.user = { username: attemptedUser.username };
-			req.session.save(() => res.redirect("/"));
+			req.session.user = {
+				username: attemptedUser.username,
+				avatar: attemptedUser.avatar,
+				_id: attemptedUser._id,
+			};
+			req.session.save(() => res.redirect('/'));
 		})
 		.catch((err) => {
-			req.flash("errors", err);
-			req.session.save(() => res.redirect("/login"));
+			req.flash('errors', err);
+			req.session.save(() => res.redirect('/login'));
 		});
 };
 
 exports.loginPage = function (req, res) {
 	if (req.session.user) {
-		res.redirect("/");
+		res.redirect('/');
 	} else {
-		res.render("./pages/login/LoginPage", {
-			title: ": Express",
-			errors: req.flash("errors"),
+		res.render('pages/login/LoginPage', {
+			title: ': Express',
+			errors: req.flash('errors'),
 		});
 	}
 };
@@ -61,29 +73,29 @@ exports.register = function (req, res) {
 	user
 		.register()
 		.then(() => {
-			req.session.user = { username: user.data.username };
-			req.session.save(() => res.redirect("/"));
+			req.session.user = { username: user.data.username, avatar: user.avatar, _id: user.data._id };
+			req.session.save(() => res.redirect('/'));
 		})
 		.catch(({ regErrors, regData }) => {
 			regData.forEach((data) => {
-				req.flash("regData", data);
+				req.flash('regData', data);
 			});
 
 			regErrors.forEach((err) => {
-				req.flash("regErrors", err);
+				req.flash('regErrors', err);
 			});
-			req.session.save(() => res.redirect("/register"));
+			req.session.save(() => res.redirect('/register'));
 		});
 };
 
 exports.registerPage = function (req, res) {
 	if (req.session.user) {
-		res.redirect("/");
+		res.redirect('/');
 	} else {
-		res.render("./pages/register/RegisterPage", {
-			title: ": Express",
-			regErrors: req.flash("regErrors"),
-			regData: req.flash("regData"),
+		res.render('pages/register/RegisterPage', {
+			title: ': Express',
+			regErrors: req.flash('regErrors'),
+			regData: req.flash('regData'),
 		});
 	}
 };
@@ -108,10 +120,8 @@ exports.sendEmail = function (req, res) {
 
 exports.homePage = function (req, res) {
 	if (req.session.user) {
-		res.render("./pages/HomeDashboard", {
-			username: req.session.user.username,
-		});
+		res.render('pages/HomeDashboard');
 	} else {
-		res.render("./pages/home/HomeGuest", { title: ": Express" });
+		res.render('pages/home/HomeGuest', { title: ': Express' });
 	}
 };

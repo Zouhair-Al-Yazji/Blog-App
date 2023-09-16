@@ -1,6 +1,7 @@
-const bcrypt = require("bcryptjs");
-const usersCollection = require("../config/db").db().collection("users");
-const validator = require("validator");
+const bcrypt = require('bcryptjs');
+const usersCollection = require('../config/db').db().collection('users');
+const validator = require('validator');
+const md5 = require('md5');
 
 class User {
 	constructor(data) {
@@ -9,16 +10,16 @@ class User {
 	}
 
 	cleanUp() {
-		if (typeof this.data.username !== "string") {
-			this.data.username = "";
+		if (typeof this.data.username !== 'string') {
+			this.data.username = '';
 		}
 
-		if (typeof this.data.email !== "string") {
-			this.data.email = "";
+		if (typeof this.data.email !== 'string') {
+			this.data.email = '';
 		}
 
-		if (typeof this.data.password !== "string") {
-			this.data.password = "";
+		if (typeof this.data.password !== 'string') {
+			this.data.password = '';
 		}
 
 		// get rid of any bogus properties
@@ -32,40 +33,40 @@ class User {
 
 	validate() {
 		return new Promise(async (resolve, reject) => {
-			if (this.data.username === "") {
-				this.errors.push("You must provide a username.");
+			if (this.data.username === '') {
+				this.errors.push('You must provide a username.');
 			}
 
-			if (this.data.username !== "" && !validator.isAlphanumeric(this.data.username)) {
-				this.errors.push("Username can only contain letters and numbers.");
+			if (this.data.username !== '' && !validator.isAlphanumeric(this.data.username)) {
+				this.errors.push('Username can only contain letters and numbers.');
 			}
 
 			if (this.data.username.length > 0 && this.data.username.length < 3) {
-				this.errors.push("Username must be at least 3 characters.");
+				this.errors.push('Username must be at least 3 characters.');
 			}
 
 			if (this.data.username.length > 30) {
-				this.errors.push("Username cannot exceed 30 characters.");
+				this.errors.push('Username cannot exceed 30 characters.');
 			}
 
 			if (!validator.isEmail(this.data.email)) {
-				this.errors.push("You must provide a valid email.");
+				this.errors.push('You must provide a valid email.');
 			}
 
-			if (this.data.password === "") {
-				this.errors.push("You must provide a password.");
+			if (this.data.password === '') {
+				this.errors.push('You must provide a password.');
 			}
 
 			if (this.data.password.length > 0 && this.data.password.length < 12) {
-				this.errors.push("Password must be at least 12 characters.");
+				this.errors.push('Password must be at least 12 characters.');
 			}
 
 			if (this.data.password.length > 50) {
-				this.errors.push("Password cannot exceed 50 characters.");
+				this.errors.push('Password cannot exceed 50 characters.');
 			}
 
 			if (this.data.password !== this.data.confirmPassword) {
-				this.errors.push("The password confirmation does not match.");
+				this.errors.push('The password confirmation does not match.');
 			}
 
 			// Only if username is valid then check to see if it's already taken
@@ -78,7 +79,7 @@ class User {
 					username: this.data.username,
 				});
 				if (usernameExists) {
-					this.errors.push("That username is already taken.");
+					this.errors.push('That username is already taken.');
 				}
 			}
 			// Only if email is valid then check to see if it's already taken
@@ -87,7 +88,7 @@ class User {
 					email: this.data.email,
 				});
 				if (emailExists) {
-					this.errors.push("That email is already being used.");
+					this.errors.push('That email is already being used.');
 				}
 			}
 			resolve();
@@ -102,9 +103,10 @@ class User {
 			});
 
 			if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
+				this.getAvatar();
 				resolve(attemptedUser);
 			} else {
-				reject("Invalid email / password.");
+				reject('Invalid email / password.');
 			}
 		});
 	}
@@ -117,10 +119,12 @@ class User {
 			// Step #2: Only if there are no validation errors
 			// then save the user data into a database
 			if (!this.errors.length) {
+				this.getAvatar();
 				this.data = {
 					username: this.data.username.trim().toLowerCase(),
 					email: this.data.email.trim().toLowerCase(),
 					password: this.data.password,
+					avatar: this.avatar,
 				};
 				// Hash user password
 				let salt = bcrypt.genSaltSync(10);
@@ -137,6 +141,11 @@ class User {
 				reject({ regErrors: this.errors, regData: this.regData });
 			}
 		});
+	}
+
+	getAvatar() {
+		const emailHash = md5(this.data.email);
+		this.avatar = `https://gravatar.com/avatar/${emailHash}/?s=128`;
 	}
 }
 
