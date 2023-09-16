@@ -1,0 +1,6 @@
+<div class="<%= className %>">
+	<!-- Include Comment Form -->
+	<%- include("../comments/CommentForm", {btnLabel: "Send"});%>
+	<!-- Include Comment -->
+	<div class="mt-8 space-y-4"><%- include("../comments/Comment");%></div>
+</div>

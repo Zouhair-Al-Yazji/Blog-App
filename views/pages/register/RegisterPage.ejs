@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="mytheme">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Blog App <%= title %></title>
+		<!-- Main Css File -->
+		<link rel="stylesheet" href="./stylesheets/style.css" />
+		<!-- Remix Icons Library -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+			rel="stylesheet"
+		/>
+		<!-- Favicons -->
+		<link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon_io/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon_io/favicon-16x16.png" />
+		<link rel="manifest" href="./images/favicon_io/site.webmanifest" />
+	</head>
+	<body>
+		<!-- Content For Large Screens -->
+		<div class="flex flex-col min-h-screen overflow-hidden font-roboto">
+			<!-- Include Header -->
+			<%- include("../../components/Header"); %>
+			<main class="flex-1 overflow-hidden">
+				<!-- Render Errors From The Server -->
+				<div class="container px-5 py-4 mx-auto">
+					<!-- Register Error Messages -->
+					<% regErrors.forEach((message) => { %>
+					<div class="alert alert-warning">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="w-6 h-6 stroke-current shrink-0"
+							fill="none"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+							/>
+						</svg>
+						<span><%= message %></span>
+					</div>
+					<% }) %>
+				</div>
+
+				<div
+					class="container flex max-w-lg px-5 py-[7.5rem] mx-auto my-16 mt-4 overflow-hidden lg:max-w-5xl lg:space-x-8"
+				>
+					<div class="items-center hidden lg:flex lg:w-1/2">
+						<img src="./images/signup-animate.svg" class="block" alt="" />
+					</div>
+					<div class="w-full px-6 py-8 md:px-8 lg:w-1/2">
+						<h2 class="text-2xl font-semibold text-center text-gray-700">Welcome</h2>
+						<p class="mt-2 text-xl text-center text-gray-600">
+							Join Our <span class="text-primary">Blog</span> community
+						</p>
+						<div class="mt-4 space-y-3 sm:flex sm:items-center sm:space-y-0 sm:space-x-4">
+							<a
+								href=""
+								class="flex items-center justify-center w-full px-4 py-2 space-x-3 text-sm text-center text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-100"
+							>
+								<i class="text-xl ri-github-fill"></i>
+								<span class="text-sm text-gray-800">Login With Githup</span>
+							</a>
+							<a
+								href=""
+								class="flex items-center justify-center w-full px-4 py-2 space-x-3 text-sm text-center text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-100"
+							>
+								<i class="text-xl ri-google-fill"></i>
+								<span class="text-sm text-gray-800">Login With Google</span>
+							</a>
+						</div>
+
+						<div class="flex items-center justify-between mt-4">
+							<span class="w-1/5 border-b lg:w-1/4"></span>
+							<a
+								id="focusLink"
+								href="#"
+								class="text-xs text-gray-500 uppercase transition-all duration-300 hover:underline"
+								>or use your email
+							</a>
+							<span class="w-1/5 border-b lg:w-1/4"></span>
+						</div>
+
+						<form method="POST" action="./register" class="form">
+							<div class="relative mt-4 form-container">
+								<label for="username" class="block mb-2 text-sm text-gray-600">Username</label>
+								<div class="relative">
+									<input
+										type="text"
+										id="username"
+										name="username"
+										autocomplete="off"
+										placeholder="Enter Username"
+										class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg username inputToFocus focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
+									/>
+									<i
+										class="ri-checkbox-circle-fill text-[#2ecc71] invisible text-xl absolute top-2 right-4"
+									></i>
+									<i
+										class="ri-error-warning-fill text-[#e74c3c] invisible text-xl absolute top-2 right-4"
+									></i>
+								</div>
+								<small class="text-[#e74c3c] absolute -bottom-6 left-0 invisible"
+									>Error message</small
+								>
+							</div>
+
+							<div class="relative mt-8 form-container">
+								<label for="email" class="block mb-2 text-sm text-gray-600">E-mail Address</label>
+								<div class="relative">
+									<input
+										type="email"
+										id="email"
+										name="email"
+										autocomplete="off"
+										placeholder="Enter Email"
+										class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg email inputToFocus focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
+									/>
+									<i
+										class="ri-checkbox-circle-fill text-[#2ecc71] invisible text-xl absolute top-2 right-4"
+									></i>
+									<i
+										class="ri-error-warning-fill text-[#e74c3c] invisible text-xl absolute top-2 right-4"
+									></i>
+								</div>
+								<small class="text-[#e74c3c] absolute -bottom-6 left-0 invisible"
+									>Error message</small
+								>
+							</div>
+							<div class="relative mt-8 form-container">
+								<label for="password" class="block mb-2 text-sm text-gray-600">Password</label>
+								<div class="relative">
+									<input
+										type="password"
+										name="password"
+										id="password"
+										autocomplete="off"
+										placeholder="Enter password"
+										class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg password focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
+									/>
+									<i
+										class="absolute text-xl cursor-pointer ri-eye-off-line togglePassword top-2 right-4"
+										title="show password"
+									></i>
+								</div>
+								<small class="text-[#e74c3c] absolute -bottom-6 left-0 invisible"
+									>Error message</small
+								>
+							</div>
+
+							<div class="relative mt-8 form-container">
+								<label for="confirmPassword" class="block mb-2 text-sm text-gray-600"
+									>Confirm Password</label
+								>
+								<div class="relative">
+									<input
+										type="password"
+										name="confirmPassword"
+										id="confirmPassword"
+										autocomplete="off"
+										placeholder="Confirm Password"
+										class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg confirmPassword focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
+									/>
+									<i
+										class="absolute text-xl cursor-pointer ri-eye-off-line toggleConfirmPassword top-2 right-4"
+										title="show password"
+									></i>
+								</div>
+								<small class="text-[#e74c3c] absolute -bottom-6 left-0 invisible"
+									>Error message</small
+								>
+							</div>
+
+							<div class="mt-8">
+								<button
+									type="submit"
+									class="w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 focus:outline-none"
+								>
+									Register
+								</button>
+							</div>
+						</form>
+
+						<div class="flex items-center justify-between mt-4">
+							<span class="w-1/5 border-b lg:w-1/4"></span>
+							<a
+								href="/login"
+								class="text-xs text-gray-500 uppercase transition-all duration-300 hover:underline"
+								>do you have an account?</a
+							>
+							<span class="w-1/5 border-b lg:w-1/4"></span>
+						</div>
+					</div>
+				</div>
+				<!-- Include Footer -->
+				<%- include("../../components/Footer"); %>
+			</main>
+		</div>
+
+		<!-- Include the validator library -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.11.0/validator.min.js"
+			integrity="sha512-hbPvueZAJx8GdjaqfRAA7FEz9UahrMeTaePHz/LDMDvDQaGSGxavizrTmww82nQmtfCUFW7wL9QmtTq8X/qM5A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<!-- Main JS File -->
+		<script src="./javascripts/main.js"></script>
+	</body>
+</html>

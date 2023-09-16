@@ -1,0 +1,170 @@
+<header class="fixed top-0 left-0 z-40 w-full transition-all duration-300 bg-transparent header">
+	<nav class="container flex items-center justify-between h-20 px-4 py-8 mx-auto lg:h-24">
+		<a class="text-3xl font-bold leading-none" href="/">
+			<img src="./images/Logo.svg" alt="Logo" />
+		</a>
+
+		<div class="lg:hidden">
+			<button
+				class="navbar-burger flex items-center text-2xl py-1.5 px-2.5 transition-colors duration-300 hover:bg-gray-200 rounded-lg"
+				title="menu"
+			>
+				<i class="ri-menu-fill"></i>
+			</button>
+		</div>
+		<div class="hidden space-x-8 lg:flex lg:items-center">
+			<ul
+				class="hidden lg:flex lg:mx-auto lg:items-center lg:justify-between lg:flex-row lg:w-auto lg:space-x-6"
+			>
+				<li>
+					<a class="text-base text-dark-hard hover:text-primary" href="/">Home</a>
+				</li>
+				<li>
+					<a class="text-base text-dark-hard hover:text-primary" href="#">Articles</a>
+				</li>
+				<li>
+					<details class="dropdown details">
+						<summary
+							class="p-0 m-1 text-sm font-normal transition-all duration-300 bg-transparent border-0 outline-none hover:bg-transparent hover:text-primary text-dark-hard btn summary"
+						>
+							Pages
+							<i class="ri-arrow-down-s-line"></i>
+						</summary>
+						<ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40">
+							<li>
+								<a href="/contact">Contact us</a>
+							</li>
+							<li>
+								<a href="/about">About us</a>
+							</li>
+						</ul>
+					</details>
+				</li>
+				<li>
+					<a class="text-base text-dark-hard hover:text-primary" href="/pricing">Pricing</a>
+				</li>
+				<li>
+					<a class="text-base text-dark-hard hover:text-primary" href="/faqs">FAQs</a>
+				</li>
+			</ul>
+			<div>
+				<a
+					class="hidden px-6 py-2 text-sm font-bold text-gray-900 transition duration-200 lg:inline-block lg:ml-auto lg:mr-1 bg-gray-50 hover:bg-gray-100 rounded-xl"
+					href="/login"
+				>
+					<i class="ri-login-box-line"></i>
+					Login
+				</a>
+				<a
+					class="hidden px-6 py-2 text-sm font-bold text-white transition duration-200 bg-blue-500 lg:inline-block hover:bg-blue-600 rounded-xl"
+					href="/register"
+				>
+					<i class="ri-user-line"></i>
+					Sign up
+				</a>
+			</div>
+		</div>
+	</nav>
+</header>
+<div class="relative z-50 hidden navbar-menu lg:hidden">
+	<div class="fixed inset-0 cursor-pointer navbar-backdrop bg-gray-800/25"></div>
+	<nav
+		class="fixed top-0 bottom-0 right-0 flex flex-col max-w-sm px-6 py-6 overflow-y-auto border-r w-72 bg-dark-soft"
+	>
+		<div class="flex items-center justify-end mb-8">
+			<button class="navbar-close">
+				<i
+					class="ri-close-fill text-gray-200 hover:text-gray-100 cursor-pointer text-2xl px-2.5 py-3 transition-colors duration-300 hover:bg-dark-hard rounded-lg"
+				></i>
+			</button>
+		</div>
+		<div>
+			<ul>
+				<li class="mb-1">
+					<a
+						class="block p-4 space-x-1.5 text-sm font-semibold text-gray-200 transition-colors duration-300 rounded hover:bg-blue-50 hover:text-primary"
+						href="/"
+					>
+						<i class="text-base font-normal ri-home-3-line"></i>
+						<span>Home</span>
+					</a>
+				</li>
+				<li class="mb-1">
+					<a
+						class="block p-4 text-sm space-x-1.5 font-semibold text-gray-200 transition-colors duration-300 rounded hover:bg-blue-50 hover:text-primary"
+						href="#"
+					>
+						<i class="text-base font-normal ri-article-line"></i>
+						<span>Articles</span>
+					</a>
+				</li>
+				<li class="mb-1">
+					<button
+						class="block w-full space-x-1.5 p-4 text-sm font-semibold text-left text-gray-200 transition-colors duration-300 rounded hover:bg-blue-50 hover:text-primary dropdown-btn"
+					>
+						<i class="text-base font-normal ri-pages-line"></i>
+						<span>Pages</span>
+						<i class="ri-arrow-down-s-line"></i>
+					</button>
+				</li>
+				<li>
+					<div class="hidden dropdown-container">
+						<a
+							href="/contact"
+							class="block p-4 text-sm space-x-1.5 font-semibold text-gray-200 transition-colors duration-300 rounded hover:bg-blue-50 hover:text-primary dropdown-btn"
+						>
+							<i class="font-normal texl-base ri-phone-line"></i>
+							<span>Contact us</span>
+						</a>
+						<a
+							href="/about"
+							class="block p-4 text-sm font-semibold space-x-1.5 text-gray-200 transition-colors duration-300 rounded hover:bg-blue-50 hover:text-primary dropdown-btn"
+						>
+							<i class="text-base font-normal ri-mail-line"></i>
+							<span>About us</span>
+						</a>
+					</div>
+				</li>
+				<li class="mb-1">
+					<a
+						class="block p-4 space-x-1.5 text-sm font-semibold text-gray-200 transition-colors duration-300 rounded hover:bg-blue-50 hover:text-primary"
+						href="/pricing"
+					>
+						<i class="text-base font-normal ri-price-tag-2-line"></i>
+						<span>Pricing</span>
+					</a>
+				</li>
+				<li class="mb-1">
+					<a
+						class="block p-4 text-sm space-x-1.5 font-semibold text-gray-200 transition-colors duration-300 rounded hover:bg-blue-50 hover:text-primary"
+						href="/faqs"
+					>
+						<i class="text-base font-normal ri-question-answer-line"></i>
+						<span>FAQs</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mt-auto">
+			<div class="pt-6">
+				<a
+					class="block px-4 py-3 mb-3 text-sm font-semibold leading-loose text-center bg-gray-50 hover:bg-gray-100 rounded-xl"
+					href="/login"
+				>
+					<i class="ri-login-box-line"></i>
+					Login
+				</a>
+				<a
+					class="block px-4 py-3 mb-2 text-sm font-semibold leading-loose text-center text-white bg-blue-600 hover:bg-blue-700 rounded-xl"
+					href="/register"
+				>
+					<i class="ri-user-line"></i>
+					Sign Up
+				</a>
+			</div>
+			<p class="my-4 text-xs text-center text-gray-400">
+				<span>Copyright &copy; <%= new Date().getFullYear(); %></span>
+			</p>
+		</div>
+	</nav>
+</div>

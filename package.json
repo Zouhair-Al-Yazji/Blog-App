@@ -1,0 +1,35 @@
+{
+	"name": "blog-app",
+	"version": "1.0.0",
+	"description": "Zouhair Blog",
+	"main": "app.js",
+	"scripts": {
+		"start": "node config/db",
+		"dev": "nodemon config/db",
+		"tailwind:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css --watch"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@preline/overlay": "^1.4.0",
+		"@tailwindcss/forms": "^0.5.6",
+		"autoprefixer": "^10.4.15",
+		"bcryptjs": "^2.4.3",
+		"connect-flash": "^0.1.1",
+		"connect-mongo": "^5.0.0",
+		"dotenv": "^16.3.1",
+		"ejs": "^3.1.9",
+		"express": "^4.18.2",
+		"express-session": "^1.17.3",
+		"mongodb": "^6.0.0",
+		"postcss": "^8.4.29",
+		"postcss-cli": "^10.1.0",
+		"tailwindcss": "^3.3.3",
+		"validator": "^13.11.0"
+	},
+	"devDependencies": {
+		"alpinejs-scroll-amount": "^1.0.2",
+		"daisyui": "^3.6.4"
+	}
+}

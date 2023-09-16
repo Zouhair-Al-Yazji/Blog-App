@@ -1,0 +1,19 @@
+<div
+	class="overflow-hidden bg-transparent border rounded-lg border-primary focus-within:border-primary focus-within:ring focus-within:ring-opacity-20"
+>
+	<form action="" method="POST" class="flex flex-col items-end p-4 commentForm">
+		<textarea
+			name="comment"
+			rows="5"
+			required
+			placeholder="Leave your comment here..."
+			class="w-full text-gray-700 bg-white resize-none focus:placeholder-transparent focus:ring-0 focus:outline-none"
+		></textarea>
+		<button
+			type="submit"
+			class="px-6 py-2.5 text-white font-semibold bg-primary rounded-lg transition-colors duration-300 hover:bg-primary/80"
+		>
+			<%= btnLabel %>
+		</button>
+	</form>
+</div>

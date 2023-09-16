@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="mytheme">
+	<head>
+		<title>Blog App <%= title %></title>
+		<!-- Main Css File -->
+		<link rel="stylesheet" href="./stylesheets/style.css" />
+		<!-- Remix Icons Library -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+			rel="stylesheet"
+		/>
+		<!-- Main JS File -->
+		<!-- Favicons -->
+		<link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon_io/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon_io/favicon-16x16.png" />
+		<link rel="manifest" href="./images/favicon_io/site.webmanifest" />
+		<script src="./javascripts/main.js" defer></script>
+	</head>
+	<body>
+		<body>
+			<!-- Content Large Screen -->
+			<div class="flex flex-col min-h-screen overflow-hidden font-roboto">
+				<!-- Include Header -->
+				<%- include("../../components/Header") %>
+				<main class="flex-1">
+					<!-- Include Hero Section -->
+					<%- include("./container/Hero") %>
+
+					<!-- Include Articles Section -->
+					<%- include("./container/Articles") %>
+					<!-- Include CTA Section -->
+					<%- include("./container/CTA") %>
+					<!-- Include Footer Section -->
+					<%- include("../../components/Footer") %>
+				</main>
+			</div>
+		</body>
+	</body>
+</html>
