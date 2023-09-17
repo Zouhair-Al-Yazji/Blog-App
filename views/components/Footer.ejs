@@ -1,9 +1,9 @@
 <section class="bg-dark-hard">
 	<footer
-		class="container mx-auto px-4 py-10 grid gap-y-10 gap-x-5 grid-cols-10 md:pt-20 md:grid-cols-12 lg:grid-cols-10 lg:gap-x-10"
+		class="container grid grid-cols-10 px-4 py-10 mx-auto gap-y-10 gap-x-5 md:pt-20 md:grid-cols-12 lg:grid-cols-10 lg:gap-x-10"
 	>
 		<div class="col-span-5 md:col-span-4 lg:col-span-2">
-			<h3 class="text-dark-light font-bold md:text-lg">Product</h3>
+			<h3 class="font-bold text-dark-light md:text-lg">Product</h3>
 			<ul class="text-[#959EAD] mt-5 space-y-4 text-sm md:text-base">
 				<li><a href="" class="hover:underline">Landing page</a></li>
 				<li><a href="" class="hover:underline">Features</a></li>
@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 		<div class="col-span-5 md:col-span-4 lg:col-span-2">
-			<h3 class="text-dark-light font-bold md:text-lg">Services</h3>
+			<h3 class="font-bold text-dark-light md:text-lg">Services</h3>
 			<ul class="text-[#959EAD] mt-5 space-y-4 text-sm md:text-base">
 				<li><a href="" class="hover:underline">Documentation</a></li>
 				<li><a href="" class="hover:underline">Design</a></li>
@@ -23,7 +23,7 @@
 			</ul>
 		</div>
 		<div class="col-span-5 md:col-span-4 md:col-start-5 lg:col-span-2 lg:col-start-auto">
-			<h3 class="text-dark-light font-bold md:text-lg">Company</h3>
+			<h3 class="font-bold text-dark-light md:text-lg">Company</h3>
 			<ul class="text-[#959EAD] mt-5 space-y-4 text-sm md:text-base">
 				<li><a href="" class="hover:underline">About</a></li>
 				<li><a href="" class="hover:underline">Terms</a></li>
@@ -32,7 +32,7 @@
 			</ul>
 		</div>
 		<div class="col-span-5 md:col-span-4 lg:col-span-2">
-			<h3 class="text-dark-light font-bold md:text-lg">More</h3>
+			<h3 class="font-bold text-dark-light md:text-lg">More</h3>
 			<ul class="text-[#959EAD] mt-5 space-y-4 text-sm md:text-base">
 				<li><a href="" class="hover:underline">Documentation</a></li>
 				<li><a href="" class="hover:underline">License</a></li>
@@ -40,48 +40,61 @@
 			</ul>
 		</div>
 		<div class="col-span-10 md:order-first md:col-span-4 lg:col-span-2">
-			<img src="./images/Logo.svg" alt="Logo" class="brightness-0 invert mx-auto md:mx-0" />
-			<p class="text-center mt-4 text-dark-light md:text-left md:text-base">
+			<img src="/images/Logo.svg" alt="Logo" class="mx-auto brightness-0 invert md:mx-0" />
+			<p class="mt-4 text-center text-dark-light md:text-left md:text-base">
 				Build a modern and creative website with <span class="text-primary">Zouhair</span>
 			</p>
-			<ul class="flex items-center justify-center md:justify-start mt-5 space-x-4 text-gray-300">
+			<ul class="flex items-center justify-center mt-5 space-x-4 text-gray-300 md:justify-start">
 				<li>
 					<a href="">
-						<i class="ri-twitter-x-fill h-auto text-2xl"></i>
+						<i class="h-auto text-2xl ri-twitter-x-fill"></i>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<i class="ri-facebook-circle-fill h-auto text-2xl"></i>
+						<i class="h-auto text-2xl ri-facebook-circle-fill"></i>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<i class="ri-youtube-fill h-auto text-2xl"></i>
+						<i class="h-auto text-2xl ri-youtube-fill"></i>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<i class="ri-instagram-fill h-auto text-2xl"></i>
+						<i class="h-auto text-2xl ri-instagram-fill"></i>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<i class="ri-telegram-fill h-auto text-2xl"></i>
+						<i class="h-auto text-2xl ri-telegram-fill"></i>
 					</a>
 				</li>
 			</ul>
 		</div>
 		<div
-			class="hidden md:flex flex-col items-center space-y-4 justify-center md:col-span-12 lg:col-span-10"
+			class="flex-col items-center justify-center hidden space-y-4 md:flex md:col-span-12 lg:col-span-10"
 		>
-			<div class="flex items-center justify-center w-14 h-14 rounded-full bg-primary">
+			<div class="flex items-center justify-center rounded-full w-14 h-14 bg-primary">
 				<i class="ri-heart-fill text-white text-[28px]"></i>
 			</div>
-			<p class="italic text-dark-light font-bold">
+			<p class="italic font-bold text-dark-light">
 				Copyright &copy; <%= new Date().getFullYear() %>. Crafted with
 				<span class="text-red-500">love</span>
 			</p>
 		</div>
 	</footer>
 </section>
+</main>
+</div>
+	<% if (req.url === "/register") { %>
+		<!-- Include the validator library -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.11.0/validator.min.js"
+			integrity="sha512-hbPvueZAJx8GdjaqfRAA7FEz9UahrMeTaePHz/LDMDvDQaGSGxavizrTmww82nQmtfCUFW7wL9QmtTq8X/qM5A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+	<% } %>
+</body>
+</html>

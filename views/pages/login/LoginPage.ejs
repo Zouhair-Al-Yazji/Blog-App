@@ -1,155 +1,132 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="mytheme">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Blog App <%= title %></title>
-		<!-- Main Css File -->
-		<link rel="stylesheet" href="./stylesheets/style.css" />
-		<!-- Remix Icons Library -->
-		<link
-			href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
-			rel="stylesheet"
-		/>
-		<!-- Favicons -->
-		<link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon_io/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon_io/favicon-16x16.png" />
-		<link rel="manifest" href="./images/favicon_io/site.webmanifest" />
-		<!-- Main JS File -->
-		<script src="./javascripts/main.js" defer></script>
-	</head>
-	<body>
-		<div class="flex flex-col min-h-screen overflow-hidden font-roboto">
-			<!-- Include Header -->
-			<%- include("../../components/Header"); %>
-			<main class="flex-1">
-				<div
-					class="container flex max-w-lg px-5 py-[7.5rem] mx-auto my-16 mt-4 overflow-hidden lg:max-w-5xl lg:space-x-8"
-				>
-					<div class="items-center hidden lg:flex lg:w-1/2">
-						<img src="./images/login-animate.svg" class="block" alt="" />
-					</div>
-					<div class="w-full px-6 py-8 md:px-8 lg:w-1/2">
-						<h2 class="text-2xl font-semibold text-center text-gray-700">Welcome Back</h2>
-						<p class="mt-2 text-xl text-center text-gray-600">
-							We are <span class="text-primary">Happy</span> to see you back
-						</p>
-						<div class="mt-4 space-y-3 sm:flex sm:items-center sm:space-y-0 sm:space-x-4">
-							<a
-								href=""
-								class="flex items-center justify-center w-full px-4 py-2 space-x-3 text-sm text-center text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-100"
-							>
-								<i class="text-xl ri-github-fill"></i>
-								<span class="text-sm text-gray-800">Login With Githup</span>
-							</a>
-							<a
-								href=""
-								class="flex items-center justify-center w-full px-4 py-2 space-x-3 text-sm text-center text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-100"
-							>
-								<i class="text-xl ri-google-fill"></i>
-								<span class="text-sm text-gray-800">Login With Google</span>
-							</a>
-						</div>
-
-						<div class="flex items-center justify-between mt-4">
-							<span class="w-1/5 border-b lg:w-1/4"></span>
-							<a
-								id="focusLink"
-								href="#"
-								class="text-xs text-gray-500 uppercase transition-all duration-300 hover:underline"
-								>or use your email
-							</a>
-							<span class="w-1/5 border-b lg:w-1/4"></span>
-						</div>
-
-						<form method="POST" action="./login">
-							<div class="mt-4">
-								<label for="email" class="block mb-2 text-sm text-gray-600">E-mail Address</label>
-								<input
-									type="email"
-									id="email"
-									name="email"
-									autocomplete="off"
-									placeholder="Enter Email"
-									class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg inputToFocus focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
-								/>
-							</div>
-							<div class="mt-4">
-								<label for="password" class="block mb-2 text-sm text-gray-600">Password</label>
-								<div class="relative">
-									<input
-										type="password"
-										name="password"
-										id="password"
-										autocomplete="off"
-										placeholder="Enter password"
-										class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg password focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
-									/>
-									<i
-										class="absolute text-xl cursor-pointer ri-eye-off-line togglePassword top-2 right-4"
-										title="show password"
-									></i>
-								</div>
-							</div>
-							<div class="flex items-center justify-between mt-4">
-								<label class="cursor-pointer label">
-									<input
-										type="checkbox"
-										checked="checked"
-										name="remember"
-										class="checkbox checkbox-sm checkbox-primary"
-									/>
-									<span class="ml-2 text-base text-gray-700 label-text">Remember me</span>
-								</label>
-
-								<a href="/resetpassword" class="text-sm text-gray-600 capitalize hover:underline"
-									>forgot your password?</a
-								>
-							</div>
-							<div class="mt-8">
-								<!-- Login Message Error -->
-								<% errors.forEach((message) => { %>
-								<div class="alert alert-error">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										class="w-6 h-6 stroke-current shrink-0"
-										fill="none"
-										viewBox="0 0 24 24"
-									>
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-										/>
-									</svg>
-									<span><%= message %></span>
-								</div>
-								<% }) %>
-								<button
-									type="submit"
-									class="w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 focus:outline-none"
-								>
-									Login
-								</button>
-							</div>
-						</form>
-
-						<div class="flex items-center justify-between mt-4">
-							<span class="w-1/5 border-b lg:w-1/4"></span>
-							<a
-								href="/register"
-								class="text-xs text-gray-500 uppercase transition-all duration-300 hover:underline"
-								>create an account</a
-							>
-							<span class="w-1/5 border-b lg:w-1/4"></span>
-						</div>
-					</div>
-				</div>
-				<!-- Include Footer -->
-				<%- include("../../components/Footer"); %>
-			</main>
+<%- include("../../components/Header"); %>
+<div
+	class="container flex max-w-lg px-5 py-[7.5rem] mx-auto my-16 mt-4 overflow-hidden lg:max-w-5xl lg:space-x-8"
+>
+	<div class="items-center hidden lg:flex lg:w-1/2">
+		<img src="/images/login-animate.svg" class="block" alt="login-svg" />
+	</div>
+	<div class="w-full px-6 py-8 md:px-8 lg:w-1/2">
+		<h2 class="text-2xl font-semibold text-center text-gray-700">Welcome Back</h2>
+		<p class="mt-2 text-xl text-center text-gray-600">
+			We are
+			<span class="text-primary">Happy</span>
+			to see you back
+		</p>
+		<div class="mt-4 space-y-3 sm:flex sm:items-center sm:space-y-0 sm:space-x-4">
+			<a
+				href=""
+				class="flex items-center justify-center w-full px-4 py-2 space-x-3 text-sm text-center text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-100"
+			>
+				<i class="text-xl ri-github-fill"></i>
+				<span class="text-sm text-gray-800">Login With Githup</span>
+			</a>
+			<a
+				href=""
+				class="flex items-center justify-center w-full px-4 py-2 space-x-3 text-sm text-center text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-100"
+			>
+				<i class="text-xl ri-google-fill"></i>
+				<span class="text-sm text-gray-800">Login With Google</span>
+			</a>
 		</div>
-	</body>
-</html>
+
+		<div class="flex items-center justify-between mt-4">
+			<span class="w-1/5 border-b lg:w-1/4"></span>
+			<a
+				id="focusLink"
+				href="#"
+				class="text-xs text-gray-500 uppercase transition-all duration-300 hover:underline"
+			>
+				or use your email
+			</a>
+			<span class="w-1/5 border-b lg:w-1/4"></span>
+		</div>
+
+		<form method="POST" action="./login">
+			<div class="mt-4">
+				<label for="email" class="block mb-2 text-sm text-gray-600">E-mail Address</label>
+				<input
+					type="email"
+					id="email"
+					name="email"
+					required
+					autocomplete="off"
+					placeholder="Enter Email"
+					class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg inputToFocus focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
+				/>
+			</div>
+			<div class="mt-4">
+				<label for="password" class="block mb-2 text-sm text-gray-600">Password</label>
+				<div class="relative">
+					<input
+						type="password"
+						name="password"
+						id="password"
+						autocomplete="off"
+						required
+						placeholder="Enter password"
+						class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-200 rounded-lg password focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50"
+					/>
+					<i
+						class="absolute text-xl cursor-pointer ri-eye-off-line togglePassword top-2 right-4"
+						title="show password"
+					></i>
+				</div>
+			</div>
+			<div class="flex items-center justify-between mt-4">
+				<label class="cursor-pointer label">
+					<input
+						type="checkbox"
+						checked="checked"
+						name="remember"
+						class="checkbox checkbox-sm checkbox-primary"
+					/>
+					<span class="ml-2 text-base text-gray-700 label-text">Remember me</span>
+				</label>
+
+				<a href="/resetpassword" class="text-sm text-gray-600 capitalize hover:underline">
+					forgot your password?
+				</a>
+			</div>
+			<div class="mt-8">
+				<!-- Login Message Error -->
+				<% errors.forEach((message) => { %>
+				<div class="alert alert-error">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-6 h-6 stroke-current shrink-0"
+						fill="none"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+						/>
+					</svg>
+					<span><%= message %></span>
+				</div>
+				<% }) %>
+				<button
+					type="submit"
+					class="w-full px-4 py-2 tracking-wide text-center text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 focus:outline-none"
+				>
+					Login
+				</button>
+			</div>
+		</form>
+
+		<div class="flex items-center justify-between mt-4">
+			<span class="w-1/5 border-b lg:w-1/4"></span>
+			<a
+				href="/register"
+				class="text-xs text-gray-500 uppercase transition-all duration-300 hover:underline"
+			>
+				create an account
+			</a>
+			<span class="w-1/5 border-b lg:w-1/4"></span>
+		</div>
+	</div>
+</div>
+<!-- Include Footer -->
+<%- include("../../components/Footer"); %>

@@ -1,33 +1,7 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="mytheme">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Blog App <%= title %></title>
-		<!-- Main Css File -->
-		<link rel="stylesheet" href="./stylesheets/style.css" />
-		<!-- Remix Icons Library -->
-		<link
-			href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
-			rel="stylesheet"
-		/>
-		<!-- Favicons -->
-		<link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon_io/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon_io/favicon-16x16.png" />
-		<link rel="manifest" href="./images/favicon_io/site.webmanifest" />
-		<!-- Alpine.js Configuration -->
-		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-	</head>
-	<body>
-		<!-- Content For Large Screens -->
-		<div class="flex flex-col min-h-screen overflow-hidden font-roboto">
-			<!-- Include Header -->
-			<%- include("../components/Header"); %>
-			<main class="flex-1 overflow-hidden">
-				<!-- ====== FAQ Section Start -->
-				<section
-					x-data="
+<%- include("../components/Header"); %>
+<!-- ====== FAQ Section Start -->
+<section
+	x-data="
    {
    openFaq1: false, 
    openFaq2: false, 
@@ -41,364 +15,352 @@
    openFaq10: false,
    }
    "
-					class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-32 lg:pb-[90px]"
-				>
-					<div class="container mx-auto">
-						<div class="flex flex-wrap sm:-mx-4">
-							<div class="w-full px-4">
-								<div class="mx-auto mb-[60px] max-w-[520px] text-center lg:mb-20">
-									<span class="block mb-2 text-lg font-semibold text-primary">FAQs</span>
-									<h2 class="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[40px]">
-										Any Questions? Look Here
-									</h2>
-									<p class="text-base text-dark-light">
-										Here are a few of the questions we get the most. If you don't see what's on your
-										mind, reach out to us anytime on
-										<a href="/contact" class="underline hover:text-primary">
-											phone, chat, or email.
-										</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="flex flex-wrap -mx-4">
-							<div class="w-full px-4 lg:w-1/2">
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq1 = !openFaq1">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												What is Zouhair Blog and how does it work?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq1" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											[Zouhair Blog] is a user-friendly platform for writers to publish articles and
-											engage with readers. Writers can create and customize their profiles, write
-											and format articles, and interact with the blogging community.
-										</p>
-									</div>
-								</div>
-
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq2 = !openFaq2">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												How can I start writing on Zouhair Blog?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq2" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											To start writing on [Zouhair Blog], you need to create an account. Once
-											registered, you can click on the "Write" or "Create" button, and a
-											user-friendly editor will guide you through the process of composing and
-											formatting your articles.
-										</p>
-									</div>
-								</div>
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq3 = !openFaq3">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												Are there any guidelines for content creation on Zouhair Blog?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq3" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											Yes, [Zouhair Blog] has content guidelines that writers must follow. These
-											guidelines ensure that content is original, respectful, and adheres to
-											community standards.
-										</p>
-									</div>
-								</div>
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq7 = !openFaq7">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												Are there any tools or features to help writers improve their writing on
-												Zouhair Blog?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq7" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											[Zouhair Blog] provides writing tools and analytics to help writers improve
-											their skills. These tools can include grammar and spelling checkers,
-											readability analysis, and audience insights.
-										</p>
-									</div>
-								</div>
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq8 = !openFaq8">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												What is the benefit of becoming a verified writer on Zouhair Blog?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq8" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											Verified writers on [Zouhair Blog] gain credibility and may have access to
-											additional features, such as custom domains, newsletter tools, and priority
-											support.
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="w-full px-4 lg:w-1/2">
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq4 = !openFaq4">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												Can I earn money from my articles on Zouhair Blog?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq4" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											Yes, [Zouhair Blog] offers various monetization options. You can earn money
-											through the Partner Program, which pays writers based on their article's
-											engagement and reader engagement.
-										</p>
-									</div>
-								</div>
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq5 = !openFaq5">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												How can I increase my visibility and readership on Zouhair Blog?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq5" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											Building a readership on [Zouhair Blog] involves consistently publishing
-											high-quality content, engaging with readers through comments and responses,
-											and promoting your articles on social media and other channels.
-										</p>
-									</div>
-								</div>
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq6 = !openFaq6">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												Can I collaborate with other writers on Zouhair Blog?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq6" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											Yes, [Zouhair Blog] often allows writers to collaborate on articles. You can
-											invite other writers to co-author, or you can contribute to publications that
-											accept submissions.
-										</p>
-									</div>
-								</div>
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq9 = !openFaq9">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												How can I connect with other writers and readers on Zouhair Blog?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq9" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											You can connect with others on [Zouhair Blog] by following and engaging with
-											their profiles, reading and commenting on their articles, and participating in
-											relevant communities and discussions.
-										</p>
-									</div>
-								</div>
-								<div
-									class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
-								>
-									<button class="flex w-full text-left faq-btn" @click="openFaq4 = !openFaq4">
-										<div
-											class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-										>
-											<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
-												<path
-													d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-													fill="#3056D3"
-													stroke="#3056D3"
-												/>
-											</svg>
-										</div>
-										<div class="w-full">
-											<h4 class="text-lg font-semibold text-black">
-												Is Zouhair Blog available as a mobile app?
-											</h4>
-										</div>
-									</button>
-									<div x-show="openFaq4" class="faq-content pl-[62px]">
-										<p class="py-3 text-base leading-relaxed text-body-color">
-											Yes, [Zouhair Blog] typically offers a mobile app for both Android and iOS
-											devices, allowing you to write and engage with readers on the go.
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="absolute bottom-0 right-0 z-[-1]">
-						<svg
-							width="1440"
-							height="886"
-							viewBox="0 0 1440 886"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								opacity="0.5"
-								d="M193.307 -273.321L1480.87 1014.24L1121.85 1373.26C1121.85 1373.26 731.745 983.231 478.513 729.927C225.976 477.317 -165.714 85.6993 -165.714 85.6993L193.307 -273.321Z"
-								fill="url(#paint0_linear)"
-							/>
-							<defs>
-								<linearGradient
-									id="paint0_linear"
-									x1="1308.65"
-									y1="1142.58"
-									x2="602.827"
-									y2="-418.681"
-									gradientUnits="userSpaceOnUse"
-								>
-									<stop stop-color="#3056D3" stop-opacity="0.36" />
-									<stop offset="1" stop-color="#F5F2FD" stop-opacity="0" />
-									<stop offset="1" stop-color="#F5F2FD" stop-opacity="0.096144" />
-								</linearGradient>
-							</defs>
-						</svg>
-					</div>
-				</section>
-				<!-- ====== FAQ Section End -->
-
-				<!-- Include Footer -->
-				<%- include("../components/Footer"); %>
-			</main>
+	class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-32 lg:pb-[90px]"
+>
+	<div class="container mx-auto">
+		<div class="flex flex-wrap sm:-mx-4">
+			<div class="w-full px-4">
+				<div class="mx-auto mb-[60px] max-w-[520px] text-center lg:mb-20">
+					<span class="block mb-2 text-lg font-semibold text-primary">FAQs</span>
+					<h2 class="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[40px]">
+						Any Questions? Look Here
+					</h2>
+					<p class="text-base text-dark-light">
+						Here are a few of the questions we get the most. If you don't see what's on your mind,
+						reach out to us anytime on
+						<a href="/contact" class="underline hover:text-primary">phone, chat, or email.</a>
+					</p>
+				</div>
+			</div>
 		</div>
+		<div class="flex flex-wrap -mx-4">
+			<div class="w-full px-4 lg:w-1/2">
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq1 = !openFaq1">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								What is Zouhair Blog and how does it work?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq1" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							[Zouhair Blog] is a user-friendly platform for writers to publish articles and engage
+							with readers. Writers can create and customize their profiles, write and format
+							articles, and interact with the blogging community.
+						</p>
+					</div>
+				</div>
 
-		<!-- Main JS File -->
-		<script src="./javascripts/main.js"></script>
-	</body>
-</html>
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq2 = !openFaq2">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								How can I start writing on Zouhair Blog?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq2" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							To start writing on [Zouhair Blog], you need to create an account. Once registered,
+							you can click on the "Write" or "Create" button, and a user-friendly editor will guide
+							you through the process of composing and formatting your articles.
+						</p>
+					</div>
+				</div>
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq3 = !openFaq3">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								Are there any guidelines for content creation on Zouhair Blog?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq3" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							Yes, [Zouhair Blog] has content guidelines that writers must follow. These guidelines
+							ensure that content is original, respectful, and adheres to community standards.
+						</p>
+					</div>
+				</div>
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq7 = !openFaq7">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								Are there any tools or features to help writers improve their writing on Zouhair
+								Blog?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq7" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							[Zouhair Blog] provides writing tools and analytics to help writers improve their
+							skills. These tools can include grammar and spelling checkers, readability analysis,
+							and audience insights.
+						</p>
+					</div>
+				</div>
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq8 = !openFaq8">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								What is the benefit of becoming a verified writer on Zouhair Blog?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq8" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							Verified writers on [Zouhair Blog] gain credibility and may have access to additional
+							features, such as custom domains, newsletter tools, and priority support.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="w-full px-4 lg:w-1/2">
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq4 = !openFaq4">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								Can I earn money from my articles on Zouhair Blog?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq4" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							Yes, [Zouhair Blog] offers various monetization options. You can earn money through
+							the Partner Program, which pays writers based on their article's engagement and reader
+							engagement.
+						</p>
+					</div>
+				</div>
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq5 = !openFaq5">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								How can I increase my visibility and readership on Zouhair Blog?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq5" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							Building a readership on [Zouhair Blog] involves consistently publishing high-quality
+							content, engaging with readers through comments and responses, and promoting your
+							articles on social media and other channels.
+						</p>
+					</div>
+				</div>
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq6 = !openFaq6">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								Can I collaborate with other writers on Zouhair Blog?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq6" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							Yes, [Zouhair Blog] often allows writers to collaborate on articles. You can invite
+							other writers to co-author, or you can contribute to publications that accept
+							submissions.
+						</p>
+					</div>
+				</div>
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq9 = !openFaq9">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								How can I connect with other writers and readers on Zouhair Blog?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq9" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							You can connect with others on [Zouhair Blog] by following and engaging with their
+							profiles, reading and commenting on their articles, and participating in relevant
+							communities and discussions.
+						</p>
+					</div>
+				</div>
+				<div
+					class="single-faq mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-4 sm:p-8 lg:px-6 xl:px-8"
+				>
+					<button class="flex w-full text-left faq-btn" @click="openFaq4 = !openFaq4">
+						<div
+							class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
+						>
+							<svg width="17" height="10" viewBox="0 0 17 10" class="fill-current icon">
+								<path
+									d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
+									fill="#3056D3"
+									stroke="#3056D3"
+								/>
+							</svg>
+						</div>
+						<div class="w-full">
+							<h4 class="text-lg font-semibold text-black">
+								Is Zouhair Blog available as a mobile app?
+							</h4>
+						</div>
+					</button>
+					<div x-show="openFaq4" class="faq-content pl-[62px]">
+						<p class="py-3 text-base leading-relaxed text-body-color">
+							Yes, [Zouhair Blog] typically offers a mobile app for both Android and iOS devices,
+							allowing you to write and engage with readers on the go.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="absolute bottom-0 right-0 z-[-1]">
+		<svg
+			width="1440"
+			height="886"
+			viewBox="0 0 1440 886"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				opacity="0.5"
+				d="M193.307 -273.321L1480.87 1014.24L1121.85 1373.26C1121.85 1373.26 731.745 983.231 478.513 729.927C225.976 477.317 -165.714 85.6993 -165.714 85.6993L193.307 -273.321Z"
+				fill="url(#paint0_linear)"
+			/>
+			<defs>
+				<linearGradient
+					id="paint0_linear"
+					x1="1308.65"
+					y1="1142.58"
+					x2="602.827"
+					y2="-418.681"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stop-color="#3056D3" stop-opacity="0.36" />
+					<stop offset="1" stop-color="#F5F2FD" stop-opacity="0" />
+					<stop offset="1" stop-color="#F5F2FD" stop-opacity="0.096144" />
+				</linearGradient>
+			</defs>
+		</svg>
+	</div>
+</section>
+<!-- ====== FAQ Section End -->
+
+<!-- Include Footer -->
+<%- include("../components/Footer"); %>

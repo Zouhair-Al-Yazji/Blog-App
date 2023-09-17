@@ -5,7 +5,6 @@ const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const router = require('./routes/router');
-const blogRouter = require('./routes/blogRouter');
 const app = express();
 
 let sessionOptions = session({
@@ -24,6 +23,7 @@ app.use(flash());
 
 app.use((req, res, next) => {
 	res.locals.user = req.session.user;
+	res.locals.req = req;
 	next();
 });
 
@@ -35,12 +35,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
-// Serve the static JavaScript file using express.static
-app.use('/blog/javascripts', express.static(path.join(__dirname, 'public/javascripts')));
-app.use('/blog/stylesheets', express.static(path.join(__dirname, 'public/stylesheets')));
-app.use('/blog/images', express.static(path.join(__dirname, 'public/images')));
-
 app.use('/', router);
-app.use('/blog', blogRouter);
 
 module.exports = app;

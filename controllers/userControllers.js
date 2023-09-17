@@ -14,10 +14,6 @@ exports.resetpasswordPage = function (req, res) {
 	res.render('pages/ResetPasswordPage', { title: ': Express' });
 };
 
-exports.articleDetailPage = function (req, res) {
-	res.render('pages/ArticleDetailPage/ArticleDetailPage', { title: ': Express' });
-};
-
 exports.aboutPage = function (req, res) {
 	res.render('pages/AboutPage', { title: ': Express' });
 };

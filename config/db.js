@@ -1,9 +1,14 @@
 'use strict';
 const dotEnv = require('dotenv');
 dotEnv.config();
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const client = new MongoClient(process.env.CONNECTION_STRING, {
+const client = new MongoClient(process.env.DB_URI2, {
+	serverApi: {
+		version: ServerApiVersion.v1,
+		strict: true,
+		deprecationErrors: true,
+	},
 	writeConcern: {
 		w: 'majority',
 		wtimeout: 0,
@@ -13,6 +18,7 @@ const client = new MongoClient(process.env.CONNECTION_STRING, {
 
 async function start() {
 	try {
+		// Connect the client to the server
 		await client.connect();
 		const app = require('../app');
 		const PORT = process.env.PORT || 5000;

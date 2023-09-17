@@ -4,7 +4,7 @@ const router = express.Router();
 const userControllers = require('../controllers/userControllers');
 const postControllers = require('../controllers/postControllers');
 
-// User router
+// user routes
 router.get('/', userControllers.homePage);
 router.get('/register', userControllers.registerPage);
 router.get('/login', userControllers.loginPage);
@@ -22,8 +22,9 @@ router.post('/search', userControllers.search);
 router.post('/sendEmail', userControllers.sendEmail);
 router.post('/contact', userControllers.contactForm);
 
-// Post router
+// post routes
 router.get('/create-post', userControllers.mustBeLoggedIn, postControllers.viewCreatePostScreen);
 router.post('/create-post', userControllers.mustBeLoggedIn, postControllers.createPost);
+router.get('/blog/:id', postControllers.viewSingle);
 
 module.exports = router;
