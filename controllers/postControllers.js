@@ -17,6 +17,11 @@ exports.createPost = function (req, res) {
 		});
 };
 
-exports.viewSingle = function (req, res) {
-	res.render('pages/ArticleDetailPage/ArticleDetailPage', { title: ': Express' });
+exports.viewSingle = async (req, res) => {
+	try {
+		let post = await Post.findSingleById(req.params.id);
+		res.render('pages/ArticleDetailPage/ArticleDetailPage', { post: post, title: 'Express' });
+	} catch (error) {
+		res.status(404).render('pages/404', { title: 'Express' });
+	}
 };

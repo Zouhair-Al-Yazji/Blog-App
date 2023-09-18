@@ -26,30 +26,14 @@
 			EDUCATION
 		</a>
 		<h1 class="mt-4 text-xl font-medium font-roboto text-dark-hard md:text-2xl">
-			Help children get better education
+			<%= post.title %>
 		</h1>
+		<p class="text-sm text-dark-light">
+			created on <%= post.createdDate.getMonth() + 1 %>/<%= post.createdDate.getDate() %>/<%=
+			post.createdDate.getFullYear() %>.
+		</p>
 		<div class="mt-5 text-dark-soft">
-			<p class="leading-7">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-				labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus
-				vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed
-				euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id
-				nibh tortor id aliquet lectus proin.
-				<br />
-				<br />
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-				labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus
-				vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed
-				euismod nisi porta lorem mollis. Morbi tri stique senectus et netus.
-				<br />
-				<br />
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-				labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus
-				vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed
-				euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id
-				nibh tortor id aliquet lectus proin. Sapien faucibus et molestie ac feugiat sed lectus
-				vestibulum.
-			</p>
+			<p class="leading-7"><%= post.body %></p>
 		</div>
 		<!-- Include Comments Container -->
 		<%- include("../../components/comments/CommentsContainer", {className: "mt-8"}); %>

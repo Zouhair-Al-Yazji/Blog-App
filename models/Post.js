@@ -22,7 +22,7 @@ class Post {
 		this.data = {
 			title: this.data.title.trim(),
 			body: this.data.body.trim(),
-			createDate: new Date(),
+			createdDate: new Date(),
 			author: new ObjectId(this.userId),
 		};
 	}
@@ -57,5 +57,21 @@ class Post {
 		});
 	}
 }
+
+Post.findSingleById = function (id) {
+	return new Promise(async (resolve, reject) => {
+		if (typeof id !== 'string' || !ObjectId.isValid(id)) {
+			reject();
+			return;
+		}
+
+		let post = await postCollection.findOne({ _id: new ObjectId(id) });
+		if (post) {
+			resolve(post);
+		} else {
+			reject();
+		}
+	});
+};
 
 module.exports = Post;

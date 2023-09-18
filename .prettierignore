@@ -1,3 +1,6 @@
 header.ejs
 footer.ejs
+404.ejs
+loggedHeader.ejs
+loggedFotter.ejs
 node_modules/
