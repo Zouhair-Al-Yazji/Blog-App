@@ -10,6 +10,10 @@ exports.mustBeLoggedIn = function (req, res, next) {
 	}
 };
 
+exports.viewProfileScreen = function (req, res) {
+	res.render('pages/profile', { title: 'Express' });
+};
+
 exports.resetpasswordPage = function (req, res) {
 	res.render('pages/ResetPasswordPage', { title: ': Express' });
 };
@@ -43,6 +47,7 @@ exports.login = async function (req, res) {
 			req.session.user = {
 				username: attemptedUser.username,
 				avatar: attemptedUser.avatar,
+				email: attemptedUser.email,
 				_id: attemptedUser._id,
 			};
 			req.session.save(() => res.redirect('/'));
@@ -69,7 +74,12 @@ exports.register = function (req, res) {
 	user
 		.register()
 		.then(() => {
-			req.session.user = { username: user.data.username, avatar: user.avatar, _id: user.data._id };
+			req.session.user = {
+				username: user.data.username,
+				avatar: user.avatar,
+				_id: user.data._id,
+				email: user.data.email,
+			};
 			req.session.save(() => res.redirect('/'));
 		})
 		.catch(({ regErrors, regData }) => {

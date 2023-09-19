@@ -13,6 +13,7 @@ router.get('/about', userControllers.aboutPage);
 router.get('/contact', userControllers.contactPage);
 router.get('/faqs', userControllers.faqsPage);
 router.get('/pricing', userControllers.pricingPage);
+router.get('/my-profile', userControllers.mustBeLoggedIn, userControllers.viewProfileScreen);
 
 router.post('/login', userControllers.login);
 router.post('/register', userControllers.register);
