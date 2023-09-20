@@ -1,5 +1,6 @@
 <!-- Include Header -->
-<%- include("../../components/Header"); %>
+<% if (user) { %> <%- include("../../components/loggedHeader"); %> <% } else { %> <%-
+include("../../components/Header"); %> <% } %>
 
 <section
 	class="container flex flex-col px-4 py-32 mx-auto lg:max-w-5xl lg:flex-row lg:gap-x-10 lg:ml-10 lg:items-start"
@@ -18,8 +19,9 @@
 				</li>
 			</ul>
 		</div>
+
 		<!-- Avatar Media -->
-		<div class="flex items-center justify-between mb-6">
+		<div class="flex items-center justify-between mb-8">
 			<div class="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
 				<div class="flex-shrink-0">
 					<img
@@ -34,10 +36,13 @@
 						<div>
 							<!-- Tooltip -->
 							<div class="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
-								<div class="block text-left cursor-pointer hs-tooltip-toggle sm:mb-1">
-									<span class="font-semibold text-gray-800">Leyla Ludic</span>
+								<div class="block text-left cursor-pointer sm:mb-1">
+									<span class="font-semibold text-gray-800 hs-tooltip-toggle hover:underline">
+										Leyla Ludic
+									</span>
 
 									<!-- Dropdown Card -->
+
 									<div
 										role="tooltip"
 										class="absolute z-10 invisible inline-block max-w-xs transition-opacity bg-gray-900 divide-y divide-gray-700 shadow-lg opacity-0 cursor-default hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible rounded-xl"
@@ -108,42 +113,45 @@
 								</div>
 							</div>
 							<!-- End Tooltip -->
-
-							<ul class="text-xs text-gray-500">
+							<a href="#" class="ml-2 text-primary hover:font-semibold">Follow</a>
+							<ul class="text-sm text-gray-500">
+								<li
+									class="relative inline-block pr-6 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full"
+								>
+									<%= post.readLength %> min read
+								</li>
 								<li
 									class="relative inline-block pr-6 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full"
 								>
 									<%= post.createdDate.toLocaleString('en-US', { month: 'short', day: 'numeric',
 									year: 'numeric'}) %>
 								</li>
-								<li
-									class="relative inline-block pr-6 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full"
-								>
-									8 min read
-								</li>
 							</ul>
 						</div>
-
 						<!-- Button Group -->
-						<div>
-							<button
-								type="button"
-								class="py-1.5 px-2.5 sm:py-2 sm:px-3 inline-flex justify-center items-center gap-x-1.5 sm:gap-x-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-xs sm:text-sm"
-							>
-								<svg
-									class="w-3.5 h-3.5"
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									viewBox="0 0 16 16"
-								>
-									<path
-										d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-									/>
-								</svg>
-								Tweet
-							</button>
+						<div class="flex items-center gap-x-8 text-[#6B6B6B] text-xl">
+							<div class="space-x-1">
+								<a href="#" class="text-lg hover:text-dark-hard">
+									<i class="ri-twitter-x-fill"></i>
+								</a>
+								<a href="#" class="hover:text-dark-hard">
+									<i class="ri-facebook-circle-fill"></i>
+								</a>
+								<a href="#" class="hover:text-dark-hard">
+									<i class="ri-linkedin-box-fill"></i>
+								</a>
+								<a href="#" class="hover:text-dark-hard">
+									<i class="ri-links-line"></i>
+								</a>
+							</div>
+							<div class="space-x-1">
+								<a href="#" class="hover:text-dark-hard">
+									<i class="ri-bookmark-line"></i>
+								</a>
+								<a href="#" class="hover:text-dark-hard">
+									<i class="ri-more-fill"></i>
+								</a>
+							</div>
 						</div>
 						<!-- End Button Group -->
 					</div>
@@ -151,14 +159,15 @@
 			</div>
 		</div>
 		<!-- End Avatar Media -->
-		<img src="/images/post1s.svg" class="w-full rounded-xl" alt="Article Img" />
+		<img src="<%= post.imgUrl || "/images/post1s.svg" %>" class="w-full rounded-xl" alt="Article
+		Img" />
 		<a
 			href="/blog?category=selectedCategory"
 			class="inline-block mt-5 text-sm text-primary font-roboto md:text-base"
 		>
-			EDUCATION
+			<%= post.category.toUpperCase() %>
 		</a>
-		<h1 class="mt-4 text-xl font-medium font-roboto text-dark-hard md:text-2xl">
+		<h1 class="mt-4 text-3xl font-medium font-roboto text-dark-hard md:text-[42px]">
 			<%= post.title %>
 		</h1>
 		<div class="mt-5 text-dark-soft">

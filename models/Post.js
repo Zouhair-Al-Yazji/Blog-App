@@ -1,6 +1,7 @@
 'use strict';
-let postCollection = require('../config/db').db().collection('posts');
-let ObjectId = require('mongodb').ObjectId;
+const postCollection = require('../config/db').db().collection('posts');
+const ObjectId = require('mongodb').ObjectId;
+const validator = require('validator');
 
 class Post {
 	constructor(data, userId) {
@@ -14,6 +15,14 @@ class Post {
 			this.data.title = '';
 		}
 
+		if (typeof this.data.imgUrl !== 'string') {
+			this.data.imgUrl = '';
+		}
+
+		if (typeof this.data.category !== 'string') {
+			this.data.category = '';
+		}
+
 		if (typeof this.data.body !== 'string') {
 			this.data.body = '';
 		}
@@ -21,6 +30,9 @@ class Post {
 		// get rid of any bogus properties
 		this.data = {
 			title: this.data.title.trim(),
+			imgUrl: this.data.imgUrl.trim(),
+			category: this.data.category.trim(),
+			readLength: this.data.readLength,
 			body: this.data.body.trim(),
 			createdDate: new Date(),
 			author: new ObjectId(this.userId),
@@ -30,6 +42,21 @@ class Post {
 	validate() {
 		if (this.data.title === '') {
 			this.errors.push('You must provide a title.');
+		}
+
+		if (this.data.imgUrl === '') {
+			this.errors.push('You must provide a image url.');
+		}
+
+		if (this.data.category === '') {
+			this.errors.push('You must provide a category.');
+		}
+		if (this.data.readLength === '') {
+			this.errors.push('You must provide a read length.');
+		}
+
+		if (!validator.isURL(this.data.imgUrl, { protocols: ['http', 'https'], require_tld: true })) {
+			this.errors.push('You must provide a valid url.');
 		}
 
 		if (this.data.body === '') {

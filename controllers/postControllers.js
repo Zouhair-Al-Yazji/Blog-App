@@ -21,10 +21,6 @@ exports.viewSingle = async (req, res) => {
 	try {
 		let post = await Post.findSingleById(req.params.id);
 		res.render('pages/ArticleDetailPage/ArticleDetailPage', { post: post, title: 'Express' });
-		// res.render('pages/ArticleNew', {
-		// 	post: post,
-		// 	title: 'Express',
-		// });
 	} catch (error) {
 		res.status(404).render('pages/404', { title: 'Express' });
 	}

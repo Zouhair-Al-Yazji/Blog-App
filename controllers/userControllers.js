@@ -62,7 +62,7 @@ exports.loginPage = function (req, res) {
 	if (req.session.user) {
 		res.redirect('/');
 	} else {
-		res.render('pages/login/LoginPage', {
+		res.render('pages/LoginPage', {
 			title: ': Express',
 			errors: req.flash('errors'),
 		});
@@ -98,7 +98,7 @@ exports.registerPage = function (req, res) {
 	if (req.session.user) {
 		res.redirect('/');
 	} else {
-		res.render('pages/register/RegisterPage', {
+		res.render('pages/RegisterPage', {
 			title: ': Express',
 			regErrors: req.flash('regErrors'),
 			regData: req.flash('regData'),
