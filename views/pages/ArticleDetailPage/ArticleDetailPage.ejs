@@ -26,7 +26,7 @@ include("../../components/Header"); %> <% } %>
 				<div class="flex-shrink-0">
 					<img
 						class="w-12 h-12 rounded-full"
-						src="/images/user-profile.jpeg"
+						src="<%= post.author.avatar %>"
 						alt="Image Description"
 					/>
 				</div>
@@ -38,7 +38,7 @@ include("../../components/Header"); %> <% } %>
 							<div class="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
 								<div class="block text-left cursor-pointer sm:mb-1">
 									<span class="font-semibold text-gray-800 hs-tooltip-toggle hover:underline">
-										Leyla Ludic
+										<%= post.author.username %>
 									</span>
 
 									<!-- Dropdown Card -->
@@ -53,13 +53,15 @@ include("../../components/Header"); %> <% } %>
 												<div class="flex-shrink-0">
 													<img
 														class="w-8 h-8 rounded-full"
-														src="/images/user-profile.jpeg"
+														src="<%= post.author.avatar %>"
 														alt="Image Description"
 													/>
 												</div>
 
 												<div class="grow">
-													<p class="text-lg font-semibold text-dark-light">Leyla Ludic</p>
+													<p class="text-lg font-semibold text-dark-light">
+														<%= post.author.username %>
+													</p>
 												</div>
 											</div>
 											<p class="text-sm text-gray-400">
@@ -131,20 +133,6 @@ include("../../components/Header"); %> <% } %>
 						<!-- Button Group -->
 						<div class="flex items-center gap-x-8 text-[#6B6B6B] text-xl">
 							<div class="space-x-1">
-								<a href="#" class="text-lg hover:text-dark-hard">
-									<i class="ri-twitter-x-fill"></i>
-								</a>
-								<a href="#" class="hover:text-dark-hard">
-									<i class="ri-facebook-circle-fill"></i>
-								</a>
-								<a href="#" class="hover:text-dark-hard">
-									<i class="ri-linkedin-box-fill"></i>
-								</a>
-								<a href="#" class="hover:text-dark-hard">
-									<i class="ri-links-line"></i>
-								</a>
-							</div>
-							<div class="space-x-1">
 								<a href="#" class="hover:text-dark-hard">
 									<i class="ri-bookmark-line"></i>
 								</a>
@@ -159,8 +147,7 @@ include("../../components/Header"); %> <% } %>
 			</div>
 		</div>
 		<!-- End Avatar Media -->
-		<img src="<%= post.imgUrl || "/images/post1s.svg" %>" class="w-full rounded-xl" alt="Article
-		Img" />
+		<img src="<%= post.imgUrl %>" class="w-full rounded-xl" alt="Article Img" />
 		<a
 			href="/blog?category=selectedCategory"
 			class="inline-block mt-5 text-sm text-primary font-roboto md:text-base"

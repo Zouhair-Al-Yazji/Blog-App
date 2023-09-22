@@ -1,5 +1,5 @@
 'use strict';
-const postCollection = require('../config/db').db().collection('posts');
+const postsCollection = require('../config/db').db().collection('posts');
 const ObjectId = require('mongodb').ObjectId;
 const validator = require('validator');
 
@@ -69,7 +69,7 @@ class Post {
 			this.cleanUp();
 			this.validate();
 			if (!this.errors.length) {
-				postCollection
+				postsCollection
 					.insertOne(this.data)
 					.then(() => {
 						resolve();
@@ -92,9 +92,42 @@ Post.findSingleById = function (id) {
 			return;
 		}
 
-		let post = await postCollection.findOne({ _id: new ObjectId(id) });
-		if (post) {
-			resolve(post);
+		let posts = await postsCollection
+			.aggregate([
+				// find post
+				{ $match: { _id: new ObjectId(id) } },
+				// fond post author
+				{
+					$lookup: {
+						from: 'users',
+						localField: 'author',
+						foreignField: '_id',
+						as: 'authorDocument',
+					},
+				},
+				// control properties
+				{
+					$project: {
+						title: 1,
+						imgUrl: 1,
+						category: 1,
+						readLength: 1,
+						body: 1,
+						createdDate: 1,
+						author: { $arrayElemAt: ['$authorDocument', 0] },
+					},
+				},
+			])
+			.toArray();
+		posts = posts.map((post) => {
+			post.author = {
+				username: post.author.username,
+				avatar: post.author.avatar,
+			};
+			return post;
+		});
+		if (posts.length) {
+			resolve(posts[0]);
 		} else {
 			reject();
 		}
