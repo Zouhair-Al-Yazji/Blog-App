@@ -22,65 +22,113 @@
 	</head>
 	<body>
 		<div class="flex flex-col min-h-screen overflow-hidden font-roboto">
-			<div class="container px-5 py-4 mx-auto navbar bg-base-100">
+			<header class="container relative px-4 py-4 mx-auto navbar">
+				<hr class="absolute -left-24 bottom-0 w-[200%] h-[1px] bg-slate-50" />
 				<div class="flex-1">
-					<a class="text-xl normal-case btn btn-ghost hover:bg-transparent">
-						<img src="/images/Logo.svg" alt="" />
+					<a href="/" class="block w-20 cursor-pointer">
+						<img src="/images/Logo.svg" alt="Logo" loading="lazy" />
 					</a>
-					<div class="form-control">
-						<input type="text" placeholder="Search" class="w-24 input input-bordered md:w-auto" />
-					</div>
 				</div>
 				<div class="flex-none gap-2">
+
+					<div class="hidden md:block" title="Search">
+						<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
+							<i class="ri-search-line"></i>
+						</button>
+					</div>
+					
 					<a
+						class="hidden px-6 py-2 text-sm text-white transition duration-200 bg-blue-500 rounded-full md:inline-block hover:bg-blue-600"
 						href="/create-post"
-						class="inline-flex items-end transition-colors duration-300 gap-x-1 text-dark-light hover:text-primary"
 					>
-						<i class="text-xl ri-edit-line"></i>
-						<span class="text-sm">Write</span>
+							<i class="text-xl ri-edit-line"></i>
+							<span class="text-sm font-normal">Write</span>
 					</a>
+
+					<div class="block md:hidden" title="Write">
+						<a href='/create-post' class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
+							<i class="ri-edit-2-line"></i>
+						</a>
+					</div>
+
+
+					<div title="Toggle dark mode">
+						<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
+							<i class="ri-moon-line"></i>
+						</button>
+					</div>
+
+					<div class="hidden md:block" title="Notification">
+						<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px]  border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
+							<i class="ri-notification-3-line"></i>
+						</button>
+					</div>
 
 					<div class="dropdown dropdown-end">
 						<label tabindex="0" class="gap-x-1 btn btn-ghost btn-circle avatar">
 							<div class="w-10 rounded-full">
-								<img src="<%= user.avatar %>" />
+								<img src="<%= user.avatar %>" loading="lazy" />
 							</div>
 						</label>
 						<ul
 							tabindex="0"
-							class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-48"
+							class="z-50 w-48 p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box"
 						>
 							<li>
 								<a
-									class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+								href="/my-profile"
+								class="flex px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
 								>
-									signed in as
-									<br />
-									<span class="font-medium"><%= user.username %></span>
+								<img src="<%= user.avatar %>" class="w-10 rounded-full" alt="user image" loading="lazy">
+									<div class="flex flex-col">
+										<span class="text-xs">Signed in As</span>
+										<span class="font-bold"><%= user.username %></span>
+									</div>
 								</a>
 							</li>
 							<hr class="border-gray-100" />
 							<li>
 								<a
-									href="/my-profile"
-									class="block px-4 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+									href="#"
+									class="block space-x-1 px-4 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
 								>
-									My Profile
+									<i class="ri-bookmark-line"></i>
+									<span>Library</span>
 								</a>
 							</li>
 							<li>
 								<a
-									href=""
-									class="block px-4 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+									href="/settings"
+									class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
 								>
-									settings
+									<i class="ri-settings-line"></i>
+									<span>Account settings</span>
+								</a>
+							</li>		
+							<hr class="border-gray-100" />
+							<li>
+								<a
+									href="/faqs"
+									class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+								>
+									<i class="ri-question-line"></i>
+									<span>Support, feedback</span>
+								</a>
+							</li>
+								<li>
+								<a
+									href="/pricing"
+									class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+								>
+									<i class="text-yellow-500 ri-bard-fill"></i>
+									<span>Become a member</span>
 								</a>
 							</li>
 							<hr class="border-gray-100" />
 							<form action="/logout" method="POST">
 								<button
 									type="submit"
-									class="flex items-center px-4 rounded-md transition-colors duration-200 py-3.5 w-full text-sm text-gray-600 space-x-3 hover:bg-gray-100 focus:outline-none"
+									class="flex items-center px-4 rounded-md transition-colors duration-200 py-3.5 w-full text-sm text-red-500 space-x-3 hover:bg-gray-100 focus:outline-none"
 								>
 									<i class="text-xl ri-logout-box-line"></i>
 									<span>Log Out</span>
@@ -89,5 +137,5 @@
 						</ul>
 					</div>
 				</div>
-			</div>
+			</header>
 			<main>

@@ -25,6 +25,7 @@ include("../../components/Header"); %> <% } %>
 			<div class="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
 				<div class="flex-shrink-0">
 					<img
+						loading="lazy"
 						class="w-12 h-12 rounded-full"
 						src="<%= post.author.avatar %>"
 						alt="Image Description"
@@ -52,6 +53,7 @@ include("../../components/Header"); %> <% } %>
 											<div class="flex w-full mb-2 sm:items-center gap-x-5 sm:gap-x-3">
 												<div class="flex-shrink-0">
 													<img
+														loading="lazy"
 														class="w-8 h-8 rounded-full"
 														src="<%= post.author.avatar %>"
 														alt="Image Description"
@@ -147,7 +149,7 @@ include("../../components/Header"); %> <% } %>
 			</div>
 		</div>
 		<!-- End Avatar Media -->
-		<img src="<%= post.imgUrl %>" class="w-full rounded-xl" alt="Article Img" />
+		<img src="<%= post.imgUrl %>" class="w-full rounded-xl" loading="lazy" alt="Article Img" />
 		<a
 			href="/blog?category=selectedCategory"
 			class="inline-block mt-5 text-sm text-primary font-roboto md:text-base"

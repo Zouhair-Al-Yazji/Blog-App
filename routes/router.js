@@ -14,6 +14,7 @@ router.get('/contact', userControllers.contactPage);
 router.get('/faqs', userControllers.faqsPage);
 router.get('/pricing', userControllers.pricingPage);
 router.get('/my-profile', userControllers.mustBeLoggedIn, userControllers.viewProfileScreen);
+router.get('/settings', userControllers.mustBeLoggedIn, userControllers.viewSettingsScreen);
 
 router.post('/login', userControllers.login);
 router.post('/register', userControllers.register);

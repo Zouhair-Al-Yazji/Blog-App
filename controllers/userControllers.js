@@ -11,7 +11,11 @@ exports.mustBeLoggedIn = function (req, res, next) {
 };
 
 exports.viewProfileScreen = function (req, res) {
-	res.render('pages/profile', { title: 'Express' });
+	res.render('pages/profile');
+};
+
+exports.viewSettingsScreen = function (req, res) {
+	res.render('pages/Settings');
 };
 
 exports.resetpasswordPage = function (req, res) {
