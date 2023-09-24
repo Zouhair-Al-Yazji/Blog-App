@@ -15,6 +15,13 @@ router.get('/faqs', userControllers.faqsPage);
 router.get('/pricing', userControllers.pricingPage);
 router.get('/my-profile', userControllers.mustBeLoggedIn, userControllers.viewProfileScreen);
 router.get('/settings', userControllers.mustBeLoggedIn, userControllers.viewSettingsScreen);
+router.get('/bookmarks', userControllers.mustBeLoggedIn, userControllers.viewBookmarksScreen);
+router.get(
+	'/notifications',
+	userControllers.mustBeLoggedIn,
+	userControllers.viewNotificationsScreen
+);
+router.get('/search', userControllers.viewSearchScreen);
 
 router.post('/login', userControllers.login);
 router.post('/register', userControllers.register);

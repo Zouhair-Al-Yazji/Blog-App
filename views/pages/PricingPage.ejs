@@ -1,4 +1,6 @@
-<%- include("../components/Header"); %>
+<% if (user) { %> <%- include("../components/loggedHeader"); %> <% } else { %> <%-
+include("../components/Header"); %> <% } %>
+
 <!-- ====== Pricing Section Start -->
 <section class="relative z-10 overflow-hidden bg-white pt-24 pb-12 lg:pt-32 lg:pb-[90px]">
 	<div class="container mx-auto">
@@ -905,5 +907,5 @@
 </section>
 <!-- ====== Pricing Section End -->
 
-<!-- Include Footer -->
-<%- include("../components/Footer"); %>
+<% if (user) { %> <%- include("../components/loggedFooter"); %> <% } else { %> <%-
+include("../components/Footer"); %> <% } %>

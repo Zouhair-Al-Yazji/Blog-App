@@ -1,5 +1,6 @@
-<%- include("../components/Header"); %>
-<!-- ====== FAQ Section Start -->
+<% if (user) { %> <%- include("../components/loggedHeader"); %> <% } else { %> <%-
+include("../components/Header"); %> <% } %>
+
 <section
 	x-data="
    {
@@ -360,7 +361,6 @@
 		</svg>
 	</div>
 </section>
-<!-- ====== FAQ Section End -->
 
-<!-- Include Footer -->
-<%- include("../components/Footer"); %>
+<% if (user) { %> <%- include("../components/loggedFooter"); %> <% } else { %> <%-
+include("../components/Footer"); %> <% } %>

@@ -6,7 +6,7 @@ exports.mustBeLoggedIn = function (req, res, next) {
 		next();
 	} else {
 		req.flash('errors', 'You must be logged in to perform this action.');
-		req.session.save(() => res.redirect('/'));
+		req.session.save(() => res.redirect('/login'));
 	}
 };
 
@@ -16,6 +16,18 @@ exports.viewProfileScreen = function (req, res) {
 
 exports.viewSettingsScreen = function (req, res) {
 	res.render('pages/Settings');
+};
+
+exports.viewBookmarksScreen = function (req, res) {
+	res.render('pages/BookmarksPage');
+};
+
+exports.viewNotificationsScreen = function (req, res) {
+	res.render('pages/NotificationsPage');
+};
+
+exports.viewSearchScreen = function (req, res) {
+	res.render('pages/SearchPage');
 };
 
 exports.resetpasswordPage = function (req, res) {

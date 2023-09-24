@@ -29,13 +29,44 @@
 						<img src="/images/Logo.svg" alt="Logo" loading="lazy" />
 					</a>
 				</div>
-				<div class="flex-none gap-2">
+				<div class="flex-none gap-x-3">
 
-					<div class="hidden md:block" title="Search">
-						<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
+					<div class="hidden md:block">
+						<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary focus:outline-none  text-slate-500" onclick="my_modal_2.showModal()">
 							<i class="ri-search-line"></i>
 						</button>
 					</div>
+					<dialog id="my_modal_2" class="transform -translate-y-32 modal">
+						<div class="flex flex-col overflow-hidden modal-box ">
+							<form
+								action="/search"
+								method="POST"
+								class="flex flex-col flex-wrap justify-between mb-4 lg:flex-row"
+							>
+								<input
+									type="search"
+									name="query"
+									placeholder="Start typing to search"
+									required
+									autocomplete="off"
+									class="flex-1 h-10 px-4 py-2 m-1 placeholder-gray-400 bg-transparent border rounded-full hover:border-slate-400 border-slate-200 text-dark-soft lg:h-12 focus:outline-none focus:border-primary focus:ring"
+								/>
+								<button
+									type="submit"
+									class="flex items-center justify-center p-2 m-1 text-white transition-colors duration-300 transform rounded-lg lg:w-12 lg:h-12 lg:p-0 bg-primary hover:bg-primary/70 focus:outline-none focus:bg-primary/70"
+								>
+									<i class="text-xl ri-search-line"></i>
+								</button>
+							</form>
+							<div class="flex items-center justify-center p-2 text-sm leading-5 text-slate-500">
+								<i class="mr-2 text-base ri-search-line"></i>
+								<span>Search for tags, people, articles, and more</span>
+							</div>
+						</div>
+						<form method="dialog" class="modal-backdrop">
+							<button>close</button>
+						</form>
+					</dialog>
 					
 					<a
 						class="hidden px-6 py-2 text-sm text-white transition duration-200 bg-blue-500 rounded-full md:inline-block hover:bg-blue-600"
@@ -138,4 +169,4 @@
 					</div>
 				</div>
 			</header>
-			<main>
+			<main class="flex-1">

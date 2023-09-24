@@ -1,0 +1,8 @@
+<% if (user) { %> <%- include("../components/loggedHeader"); %> <% } else { %> <%-
+include("../components/Header"); %> <% } %>
+
+<p class="mt-10 font-bold text-center">Search</p>
+
+<% if (user) { %> <%- include("../components/loggedFooter"); %> <% } %> <% if (user) { %> <%-
+include("../components/loggedFooter"); %> <% } else { %> <%- include("../components/Footer"); %> <%
+} %>
