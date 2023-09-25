@@ -103,7 +103,6 @@ document.addEventListener('click', function (e) {
 	}
 
 	// show and hide password from input
-
 	if (e.target.classList.contains('togglePassword')) {
 		const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
 		password.setAttribute('type', type);

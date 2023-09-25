@@ -88,13 +88,150 @@
 							<i class="ri-moon-line"></i>
 						</button>
 					</div>
+					<details class="hidden dropdown details md:block" >
+						<summary
+							class="px-[0.6rem] cursor-pointer border border-transparent hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 hover:bg-transparent focus:ring-primary text-slate-500 inline-flex items-center justify-center gap-2 py-1 text-[22px] rounded-full border-slate-200 focus:ring-offset-white font-normal transition-all
+							duration-150 bg-transparent outline-none"
+							>
+								<i class="ri-notification-3-line"></i>
+							</summary>
+							<div class="z-50 rounded-xl shadow w-[430px] -left-[385px] list summary top-14 border border-slate-200 bg-white pt-6 pb-4 outline-offset-2 outline-2 outline-transparent dropdown-content">
+								<div class="flex justify-between items-center py-1.5 px-6 mb-3 lsit summary">
+									<h3 class="text-xl font-semibold text-slate-700 lsit summary">Notifications</h3>
+								</div>
+								<div class="lsit summary">
+									<div class="px-6 border-b border-slate-200 lsit summary">
+										<nav class="flex space-x-2 lsit summary" aria-label="Tabs" role="tablist">
+											<button type="button" class="hs-tab-active:font-semibold lsit summary font-medium text-slate-600 hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-1 px-2 text-base inline-flex items-center gap-2 border-b-[2px] border-transparent whitespace-nowrap hover:text-blue-600 active" data-hs-tab="#tabs-with-underline-1" aria-controls="tabs-with-underline-1" role="tab">
+												All
+											</button>
+											<button type="button" class="hs-tab-active:font-semibold lsit summary font-medium text-slate-600 hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-2 px-1 inline-flex items-center gap-2 border-b-[2px] border-transparent text-base whitespace-nowrap hover:text-blue-600" id="tabs-with-underline-item-2" data-hs-tab="#tabs-with-underline-2" aria-controls="tabs-with-underline-2" role="tab">
+												Comments
+											</button>
+											<button type="button" class="hs-tab-active:font-semibold lsit summary font-medium text-slate-600 hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-2 px-1 inline-flex items-center gap-2 border-b-[2px] border-transparent text-base whitespace-nowrap hover:text-blue-600" id="tabs-with-underline-item-3" data-hs-tab="#tabs-with-underline-3" aria-controls="tabs-with-underline-3" role="tab">
+												Likes
+											</button>
+										</nav>
+									</div>
 
-					<div class="hidden md:block" title="Notification">
-						<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px]  border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
-							<i class="ri-notification-3-line"></i>
-						</button>
-					</div>
+									<div class="min-h-[280px] max-h-[calc(100vh-20rem)] overflow-scroll lsit summary">
+										<div id="tabs-with-underline-1" role="tabpanel" 
+											class="flex flex-col lsit summary" 
+											aria-labelledby="tabs-with-underline-item-1">	
+											<div class="flex flex-col items-start w-full px-6 py-3 my-2 bg-transparent text-slate-600 lsit summary">
+												<div class="lsit summary max-w-[64ch] text-slate-600">
+													<h2 class="mb-4 text-2xl font-semibold lsit summary text-slate-700 ">Hi 👋,<%= user.username %></h2>
+													<p class="mb-4 lsit summary">Welcome to Zouhair Blog, the developer community that truly believes in creative freedom!</p>
+													<p class="mb-4 lsit summary">Here's some information to help you get started with Zouhair Blog.</p>
+													<h3 class="mt-6 mb-3 text-lg font-semibold text-slate-700 lsit summary">How does it work?</h3>
+													<ol class="pl-6 list-decimal lsit summary">
+														<li class="mb-2 lsit summary">Developers create personal blogs on Zouhair Blog.
+														</li>
+														<li class="mb-2 lsit summary">Every time an author writes an article, it's published on Zouhair Blog. 
+														</li>
+														<li class="lsit summary">
+															Users discover articles from their feeds (such as 
+															<a class="font-medium underline text-slate-600 lsit summary" href="/">personal feed</a>, 
+															<a class="font-medium underline text-slate-600 lsit summary" href="/following">following</a> and 
+															<a class="font-medium underline text-slate-600 lsit summary" href="/featured">featured</a>), 
+															and engage with the content. 
+														</li>
+													</ol>
+													<h3 class="mt-6 mb-3 text-lg font-semibold text-slate-700 lsit summary">
+														Quick Links
+													</h3>
+													<ul class="pl-6 mb-6 list-disc lsit summary">
+														<li class="mb-2 lsit summary">✍️ 
+															<a class="font-medium underline lsit summary text-slate-600" href="/create-post">
+																Write your first article
+															</a>
+														</li>
+														<li class="mb-2 lsit summary">📃
+															<a class="font-medium underline lsit summary text-slate-600" href="/">
+																Read articles from your personalized feed
+															</a>
+														</li>
+														<li class="lsit summary">😎 
+															<a class="font-medium underline lsit summary text-slate-600" href="/my-profile">
+																Keep your profile up-to-date
+															</a>
+														</li>
+													</ul>
+												</div>
 
+												<div class="pt-4 border-t lsit summary border-slate-200">
+													<p class="lsit summary">We share the best articles on Twitter and LinkedIn. Follow us to stay updated</p>
+													<div class="flex items-center gap-4 mt-4 lsit summary">
+														<a
+															class="text-slate-600 rounded-full flex bg-white border border-slate-300 hover:bg-slate-50 focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 disabled:bg-white disabled:border-slate-200 disabled:cursor-not-allowed disabled:text-slate-300 text-sm py-2.5 px-5 w-full items-center justify-center lsit summary"
+															href="https://twitter.com/"
+															target="_blank"
+														>
+															<span class="mr-2 text-slate-500 lsit summary">
+																<svg fill="none" viewBox="0 0 20 20" width="20" height="20" class="lsit summary">
+																	<path
+																		stroke="currentColor"
+																		d="M18.333 3.342c-.833.408-1.65.574-2.5.825-.934-1.054-2.319-1.113-3.65-.614-1.33.498-2.202 1.716-2.183 3.114V7.5c-2.704.07-5.112-1.162-6.667-3.333 0 0-3.485 6.194 3.334 9.166-1.56 1.04-3.116 1.74-5 1.667 2.756 1.503 5.76 2.02 8.361 1.264 2.984-.866 5.435-3.102 6.376-6.451.28-1.02.42-2.071.414-3.128-.001-.207 1.259-2.31 1.515-3.344v0Z"
+																		stroke-linecap="round"
+																		stroke-linejoin="round"
+																		stroke-width="1.25"
+																	></path>
+																</svg>
+															</span>
+															<span class="lsit summary">Twitter</span>
+														</a>
+														<a
+															class="rounded-full flex text-slate-600 bg-white lsit summary border border-slate-300 hover:bg-slate-50 focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 disabled:bg-white disabled:border-slate-200 disabled:cursor-not-allowed disabled:text-slate-300 text-sm py-2.5 px-5 w-full items-center justify-center"
+															href="https://www.linkedin.com/in/zouhair-elyazji-3aa50824b/"
+															target="_blank"
+														>
+															<span class="mr-2 text-slate-500 lsit summary">
+																<svg fill="none" viewBox="0 0 20 20" width="20" height="20" class="lsit summary">
+																	<path
+																		stroke="currentColor"
+																		d="M13.333 13.333v-2.5a1.667 1.667 0 0 0-3.333 0v2.5-4.166m-3.333 4.166V9.167M7 6.583a.333.333 0 1 1-.667 0m.667 0a.333.333 0 0 0-.667 0m.667 0h-.667M5 17.5h10a2.5 2.5 0 0 0 2.5-2.5V5A2.5 2.5 0 0 0 15 2.5H5A2.5 2.5 0 0 0 2.5 5v10A2.5 2.5 0 0 0 5 17.5Z"
+																		stroke-linecap="round"
+																		stroke-linejoin="round"
+																		stroke-width="1.25"
+																	></path>
+																</svg>
+															</span>
+															<span class="lsit summary">LinkedIn</span>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>	
+
+										<div id="tabs-with-underline-2" class="hidden px-6 lsit summary" role="tabpanel" aria-labelledby="tabs-with-underline-item-2">
+											<div class="flex flex-row items-center justify-center w-full py-20 my-2 bg-transparent text-slate-600 lsit summary">
+												<p class="text-xl font-medium leading-6 lsit summary">No notifications yet!</p>
+											</div>
+										</div>
+
+										<div id="tabs-with-underline-3" class="hidden px-6 lsit summary" role="tabpanel" aria-labelledby="tabs-with-underline-item-3">
+											<div class="flex flex-row items-center justify-center w-full py-20 my-2 bg-transparent text-slate-600 lsit summary">
+												<p class="text-xl font-medium leading-6 lsit summary">No notifications yet!</p>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								<div class="relative lsit summary">
+									<div class="left-0 right-0 -top-[0.625] h-1 w-full absolute lsit summary"></div>
+									<div class="flex items-center justify-between px-2 pt-4 mx-6 mt-2 border-t border-slate-200 lsit summary">
+										<button class="rounded-full flex bg-transparent hover:bg-slate-100 disabled:hover:bg-transparent text-slate-600 disabled:text-slate-300 border border-transparent focus:border focus:border-blue-600 disabled:cursor-not-allowed text-sm py-2.5 px-5 lsit summary">
+											<svg fill="none" class="lsit summary" viewBox="0 0 20 20" width="20" height="20">
+												<path stroke="currentColor" d="M13.16 2.287a8.333 8.333 0 1 0 5.14 6.967m.033-5.92L10 11.673l-2.5-2.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.25"></path>
+											</svg>
+											<span class="ml-2 lsit summary">
+												Mark all as read</span>
+											</button>
+											<a href="/notifications" class="rounded-full flex text-blue-600 border border-blue-600 hover:bg-blue-50 focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600  disabled:bg-white  disabled:border-blue-300  disabled:cursor-not-allowed disabled:text-blue-300 text-sm py-2.5 px-5">See all notifications</a>
+									</div>
+								</div>
+							</div>
+					</details>
 					<div class="dropdown dropdown-end">
 						<label tabindex="0" class="gap-x-1 btn btn-ghost btn-circle avatar">
 							<div class="w-10 rounded-full">
