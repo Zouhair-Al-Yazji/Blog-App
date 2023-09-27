@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="mytheme">
 	<head>
-		<title>Blog App <%= title %></title>
+		<title>Blog App <%= locals.title %></title>
 		<!-- Main Css File -->
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 		<!-- Remix Icons Library -->
@@ -24,7 +24,7 @@
 	</head>
 	<body>
 <div class="relative flex flex-col min-h-screen overflow-hidden font-roboto">
-<header class="fixed top-0 left-0 z-40 w-full transition-all duration-300 bg-transparent header">
+<header class="fixed top-0 left-0 z-50 w-full transition-all duration-300 bg-transparent border-b border-slate-200 header">
 	<nav class="container flex items-center justify-between h-20 px-4 py-8 mx-auto lg:h-24">
 		<a class="text-3xl font-bold leading-none" href="/">
 			<img src="/images/Logo.svg" alt="Logo" />
@@ -56,12 +56,12 @@
 							Pages
 							<i class="ri-arrow-down-s-line"></i>
 						</summary>
-						<ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40">
-							<li>
-								<a href="/contact">Contact us</a>
+						<ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-40 list summary">
+							<li class="list summary ">
+								<a href="/contact" class="list summary">Contact us</a>
 							</li>
-							<li>
-								<a href="/about">About us</a>
+							<li class="list summary">
+								<a href="/about" class="list summary">About us</a>
 							</li>
 						</ul>
 					</details>

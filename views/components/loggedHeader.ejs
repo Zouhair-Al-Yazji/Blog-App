@@ -22,78 +22,73 @@
 	</head>
 	<body>
 		<div class="flex flex-col min-h-screen overflow-hidden font-roboto">
-			<header class="container relative px-4 py-4 mx-auto navbar">
-				<hr class="absolute -left-24 bottom-0 w-[200%] h-[1px] bg-slate-50" />
-				<div class="flex-1">
-					<a href="/" class="block w-20 cursor-pointer">
-						<img src="/images/Logo.svg" alt="Logo" loading="lazy" />
-					</a>
-				</div>
-				<div class="flex-none gap-x-3">
+			<header class="fixed top-0 left-0 z-50 w-full transition-all duration-300 bg-transparent border-b border-slate-200 header">
+				<nav class="container relative px-4 py-4 mx-auto navbar">
 
-					<div class="hidden md:block">
-						<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary focus:outline-none  text-slate-500" onclick="my_modal_2.showModal()">
-							<i class="ri-search-line"></i>
-						</button>
-					</div>
-					<dialog id="my_modal_2" class="transform -translate-y-32 modal">
-						<div class="flex flex-col overflow-hidden modal-box ">
-							<form
-								action="/search"
-								method="POST"
-								class="flex flex-col flex-wrap justify-between mb-4 lg:flex-row"
-							>
-								<input
-									type="search"
-									name="query"
-									placeholder="Start typing to search"
-									required
-									autocomplete="off"
-									class="flex-1 h-10 px-4 py-2 m-1 placeholder-gray-400 bg-transparent border rounded-full hover:border-slate-400 border-slate-200 text-dark-soft lg:h-12 focus:outline-none focus:border-primary focus:ring"
-								/>
-								<button
-									type="submit"
-									class="flex items-center justify-center p-2 m-1 text-white transition-colors duration-300 transform rounded-lg lg:w-12 lg:h-12 lg:p-0 bg-primary hover:bg-primary/70 focus:outline-none focus:bg-primary/70"
-								>
-									<i class="text-xl ri-search-line"></i>
-								</button>
-							</form>
-							<div class="flex items-center justify-center p-2 text-sm leading-5 text-slate-500">
-								<i class="mr-2 text-base ri-search-line"></i>
-								<span>Search for tags, people, articles, and more</span>
-							</div>
-						</div>
-						<form method="dialog" class="modal-backdrop">
-							<button>close</button>
-						</form>
-					</dialog>
-					
-					<a
-						class="hidden px-6 py-2 text-sm text-white transition duration-200 bg-blue-500 rounded-full md:inline-block hover:bg-blue-600"
-						href="/create-post"
-					>
-							<i class="text-xl ri-edit-line"></i>
-							<span class="text-sm font-normal">Write</span>
-					</a>
-
-					<div class="block md:hidden" title="Write">
-						<a href='/create-post' class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
-							<i class="ri-edit-2-line"></i>
+					<div class="flex-1">
+						<a href="/" class="block w-20 cursor-pointer">
+							<img src="/images/Logo.svg" alt="Logo" loading="lazy" />
 						</a>
 					</div>
+					<div class="flex-none gap-x-3">
+
+						<div class="hidden md:block">
+							<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary focus:outline-none  text-slate-500" onclick="my_modal_2.showModal()">
+								<i class="ri-search-line"></i>
+							</button>
+						</div>
+						<dialog id="my_modal_2" class="transform -translate-y-32 modal">
+							<div class="flex flex-col overflow-hidden modal-box ">
+								<form action="/search" method="POST" class="relative flex flex-row flex-wrap items-stretch">
+									<span class="absolute z-30 flex items-center h-full p-4 text-dark-light">
+										<i class="ri-search-line"></i>
+									</span>
+									<input
+										type="search"
+										name="query"
+										placeholder="Start typing to search"
+										required
+										autocomplete="off"
+										class="w-full px-10 py-3 placeholder-gray-400 bg-transparent border rounded-full border-slate-200 hover:border-slate-400 text-slate-600 outline-2 outline-transparent outline-offset-2 placeholder:font-normal focus:outline-none focus:border-primary"
+										value="<%= locals.body %>"
+									/>
+								</form>
+								<div class="flex items-center justify-center p-2 text-sm leading-5 text-slate-500">
+									<i class="mr-2 text-base ri-search-line"></i>
+									<span>Search for tags, people, articles, and more</span>
+								</div>
+							</div>
+							<form method="dialog" class="modal-backdrop">
+								<button>close</button>
+							</form>
+						</dialog>
+						
+						<a
+							class="hidden px-6 py-2 text-sm text-white transition duration-200 bg-blue-500 rounded-full md:inline-block hover:bg-blue-600"
+							href="/create-post"
+						>
+								<i class="text-xl ri-edit-line"></i>
+								<span class="text-sm font-normal">Write</span>
+						</a>
+
+						<div class="block md:hidden" title="Write">
+							<a href='/create-post' class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
+								<i class="ri-edit-2-line"></i>
+							</a>
+						</div>
 
 
-					<div title="Toggle dark mode">
-						<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
-							<i class="ri-moon-line"></i>
-						</button>
-					</div>
-					<details class="hidden dropdown details md:block" >
-						<summary
-							class="px-[0.6rem] cursor-pointer border border-transparent hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 hover:bg-transparent focus:ring-primary text-slate-500 inline-flex items-center justify-center gap-2 py-1 text-[22px] rounded-full border-slate-200 focus:ring-offset-white font-normal transition-all
-							duration-150 bg-transparent outline-none"
-							>
-								<i class="ri-notification-3-line"></i>
+						<div title="Toggle dark mode">
+							<button class="inline-flex items-center justify-center gap-2 px-[0.6rem] py-1 text-[22px] border border-transparent rounded-full hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-offset-white focus:ring-primary text-slate-500 ">
+								<i class="ri-moon-line"></i>
+							</button>
+						</div>
+						<details class="hidden dropdown details md:block" >
+							<summary
+								class="px-[0.6rem] cursor-pointer border border-transparent hover:border hover:border-slate-200 focus:outline-none focus:ring focus:ring-offset-2 hover:bg-transparent focus:ring-primary text-slate-500 inline-flex items-center justify-center gap-2 py-1 text-[22px] rounded-full border-slate-200 focus:ring-offset-white font-normal transition-all
+								duration-150 bg-transparent outline-none"
+								>
+									<i class="ri-notification-3-line"></i>
 							</summary>
 							<div class="z-50 rounded-xl shadow w-[430px] -left-[385px] list summary top-14 border border-slate-200 bg-white pt-6 pb-4 outline-offset-2 outline-2 outline-transparent dropdown-content">
 								<div class="flex justify-between items-center py-1.5 px-6 mb-3 lsit summary">
@@ -231,79 +226,80 @@
 									</div>
 								</div>
 							</div>
-					</details>
-					<div class="dropdown dropdown-end">
-						<label tabindex="0" class="gap-x-1 btn btn-ghost btn-circle avatar">
-							<div class="w-10 rounded-full">
-								<img src="<%= user.avatar %>" loading="lazy" />
-							</div>
-						</label>
-						<ul
-							tabindex="0"
-							class="z-50 w-48 p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box"
-						>
-							<li>
-								<a
-								href="/my-profile"
-								class="flex px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
-								>
-								<img src="<%= user.avatar %>" class="w-10 rounded-full" alt="user image" loading="lazy">
-									<div class="flex flex-col">
-										<span class="text-xs">Signed in As</span>
-										<span class="font-bold"><%= user.username %></span>
-									</div>
-								</a>
-							</li>
-							<hr class="border-gray-100" />
-							<li>
-								<a
-									href="#"
-									class="block space-x-1 px-4 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
-								>
-									<i class="ri-bookmark-line"></i>
-									<span>Library</span>
-								</a>
-							</li>
-							<li>
-								<a
-									href="/settings"
-									class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
-								>
-									<i class="ri-settings-line"></i>
-									<span>Account settings</span>
-								</a>
-							</li>		
-							<hr class="border-gray-100" />
-							<li>
-								<a
-									href="/faqs"
-									class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
-								>
-									<i class="ri-question-line"></i>
-									<span>Support, feedback</span>
-								</a>
-							</li>
+						</details>
+						<div class="dropdown dropdown-end">
+							<label tabindex="0" class="gap-x-1 btn btn-ghost btn-circle avatar">
+								<div class="w-10 rounded-full">
+									<img src="<%= user.avatar %>" loading="lazy" />
+								</div>
+							</label>
+							<ul
+								tabindex="0"
+								class="z-50 w-48 p-2 mt-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box"
+							>
 								<li>
-								<a
-									href="/pricing"
-									class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
-								>
-									<i class="text-yellow-500 ri-bard-fill"></i>
-									<span>Become a member</span>
-								</a>
-							</li>
-							<hr class="border-gray-100" />
-							<form action="/logout" method="POST">
-								<button
-									type="submit"
-									class="flex items-center px-4 rounded-md transition-colors duration-200 py-3.5 w-full text-sm text-red-500 space-x-3 hover:bg-gray-100 focus:outline-none"
-								>
-									<i class="text-xl ri-logout-box-line"></i>
-									<span>Log Out</span>
-								</button>
-							</form>
-						</ul>
+									<a
+									href="/my-profile"
+									class="flex px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+									>
+									<img src="<%= user.avatar %>" class="w-10 rounded-full" alt="user image" loading="lazy">
+										<div class="flex flex-col">
+											<span class="text-xs">Signed in As</span>
+											<span class="font-bold"><%= user.username %></span>
+										</div>
+									</a>
+								</li>
+								<hr class="border-gray-100" />
+								<li>
+									<a
+										href="/bookmarks"
+										class="block space-x-1 px-4 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+									>
+										<i class="ri-bookmark-line"></i>
+										<span>Library</span>
+									</a>
+								</li>
+								<li>
+									<a
+										href="/settings"
+										class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+									>
+										<i class="ri-settings-line"></i>
+										<span>Account settings</span>
+									</a>
+								</li>		
+								<hr class="border-gray-100" />
+								<li>
+									<a
+										href="/faqs"
+										class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+									>
+										<i class="ri-question-line"></i>
+										<span>Support, feedback</span>
+									</a>
+								</li>
+									<li>
+									<a
+										href="/pricing"
+										class="block px-4 space-x-1 py-2.5 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100"
+									>
+										<i class="text-yellow-500 ri-bard-fill"></i>
+										<span>Become a member</span>
+									</a>
+								</li>
+								<hr class="border-gray-100" />
+								<form action="/logout" method="POST">
+									<button
+										type="submit"
+										class="flex items-center px-4 rounded-md transition-colors duration-200 py-3.5 w-full text-sm text-red-500 space-x-3 hover:bg-gray-100 focus:outline-none"
+									>
+										<i class="text-xl ri-logout-box-line"></i>
+										<span>Log Out</span>
+									</button>
+								</form>
+							</ul>
+						</div>
 					</div>
-				</div>
+				</nav>
 			</header>
 			<main class="flex-1">

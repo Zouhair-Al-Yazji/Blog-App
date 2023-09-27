@@ -1,9 +1,11 @@
 <%- include("../components/loggedHeader"); %>
 
-<div
-	class="container relative z-40 flex gap-10 px-6 mx-auto md:px-12 lg:px-40 lg:max-w-6xl xl:px-48"
+<section
+	class="container relative z-40 flex justify-center gap-10 px-4 pt-24 pb-10 mx-auto lg:px-0"
 >
-	<div class="flex flex-col min-w-full gap-5 pt-5 pb-24">
+	<div
+		class="relative flex flex-col gap-6 min-w-full pt-5 mb-14 md:w-[640px] md:min-w-0 md:gap-8 md:pt-14 lg:w-[728px]"
+	>
 		<div
 			class="relative flex flex-col items-start w-full gap-1 p-6 overflow-hidden bg-white border rounded-2xl border-slate-200"
 		>
@@ -545,7 +547,7 @@
 						<div
 							class="text-base font-semibold text-center font-heading md:text-xl sm:text-lg text-slate-700"
 						>
-							You haven’t bookmarked any articles yet
+							You haven't bookmarked any articles yet
 						</div>
 						<div class="text-sm text-center text-slate-500 sm:text-base">
 							Found an article that sparks your interest or a tutorial you want to read later? Click
@@ -562,6 +564,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 
-<%- include("../components/loggedNav"); %> <%- include("../components/loggedFooter"); %>
+<%- include("../components/loggedNav", {bookmarksActive: '#1565D8'}); %> <%-
+include("../components/loggedFooter"); %>

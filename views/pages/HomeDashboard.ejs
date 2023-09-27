@@ -1,4 +1,7 @@
 <%- include("../components/loggedHeader"); %>
-<p class="mt-10 font-bold text-center">Hello <%= user.username %></p>
+<section class="pt-16">
+	<p class="mt-10 font-bold text-center">Hello <%= user.username %></p>
+</section>
 
-<%- include("../components/loggedNav"); %> <%- include("../components/loggedFooter"); %>
+<%- include("../components/loggedNav", {feedsActive: '#1565D8'}); %> <%-
+include("../components/loggedFooter"); %>

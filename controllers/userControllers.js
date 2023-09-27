@@ -133,7 +133,7 @@ exports.resetpassword = function (req, res) {
 };
 
 exports.search = function (req, res) {
-	res.send(`Query Search => ${req.body.query}`);
+	res.render('pages/SearchPage', { body: req.body.query });
 };
 
 exports.sendEmail = function (req, res) {

@@ -200,16 +200,23 @@ for (i = 0; i < dropdown.length; i++) {
 }
 const header = document.querySelector('.header');
 
+let lastScrollTop = 0;
+
 if (header) {
 	window.addEventListener('scroll', () => {
-		const scrollY = window.scrollY;
+		const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
-		if (scrollY > 60) {
+		if (currentScrollTop > lastScrollTop) {
+			header.style.transform = 'translateY(-100px)';
+		} else {
+			header.style.transform = 'translateY(0)';
+		}
+		lastScrollTop = currentScrollTop;
+		const scrollY = window.scrollY;
+		if (scrollY > 50) {
 			header.style.background = 'rgba(255, 255, 255, 0.9)';
 			header.style.backdropFilter = 'blur(12px)';
-			header.style.borderBottom = `1px solid #eee`;
 		} else {
-			header.style.borderBottom = `none`;
 			header.style.background = 'none';
 			header.style.backdropFilter = 'none';
 		}
