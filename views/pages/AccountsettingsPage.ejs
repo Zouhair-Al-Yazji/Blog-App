@@ -1,0 +1,151 @@
+<%- include("../components/loggedHeader"); %>
+<section class="container px-4 pt-24 mx-auto mt-3">
+	<div class="flex flex-row flex-wrap md:pt-2">
+		<div class="w-full shrink-0 lg:w-[334px] lg:pl-0 lg:pr-4">
+			<div class="p-4 mb-2 bg-white border rounded-lg">
+				<h1 class="text-2xl font-bold">Account Settings</h1>
+			</div>
+			<div
+				class="flex flex-row items-end mb-2 overflow-auto text-sm font-bold uppercase bg-white border rounded-lg text-slate-700 whitespace-nowrap lg:items-start lg:flex-col"
+			>
+				<a
+					class="flex flex-row items-center w-full px-3 py-4 hover:bg-slate-100 md:px-6"
+					href="/settings"
+				>
+					<svg class="w-6 h-6 mr-4 opacity-75 fill-current" viewBox="0 0 496 512">
+						<path
+							d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm128 421.6c-35.9 26.5-80.1 42.4-128 42.4s-92.1-15.9-128-42.4V416c0-35.3 28.7-64 64-64 11.1 0 27.5 11.4 64 11.4 36.6 0 52.8-11.4 64-11.4 35.3 0 64 28.7 64 64v13.6zm30.6-27.5c-6.8-46.4-46.3-82.1-94.6-82.1-20.5 0-30.4 11.4-64 11.4S204.6 320 184 320c-48.3 0-87.8 35.7-94.6 82.1C53.9 363.6 32 312.4 32 256c0-119.1 96.9-216 216-216s216 96.9 216 216c0 56.4-21.9 107.6-57.4 146.1zM248 120c-48.6 0-88 39.4-88 88s39.4 88 88 88 88-39.4 88-88-39.4-88-88-88zm0 144c-30.9 0-56-25.1-56-56s25.1-56 56-56 56 25.1 56 56-25.1 56-56 56z"
+						></path>
+					</svg>
+					<span>Profile</span>
+				</a>
+				<a
+					class="flex flex-row items-center w-full px-3 py-4 text-blue-500 md:px-6"
+					href="/settings/account"
+				>
+					<svg class="w-6 h-6 mr-4 opacity-75 fill-current" viewBox="0 0 512 512">
+						<path
+							d="M168 255.1c0-47.7 39.4-88 88-88s88 40.3 88 88c0 49.5-39.4 88.9-88 88.9s-88-39.4-88-88.9zm88-56c-30.9 0-56 26-56 56 0 31.8 25.1 56 56 56s56-24.2 56-56c0-30-25.1-56-56-56zM65.67 230.6l-40.33-36.8c-11.12-10.1-13.68-26.6-6.16-39.6l30.24-52.4c7.52-13.02 23.09-19.05 37.42-14.48l51.96 16.58c13.4-10.34 28.2-18.94 44-25.47l11.7-53.27C197.7 10.47 210.7 0 225.8 0h60.4c15.1 0 28.1 10.47 31.3 25.16l11.7 53.27c14.9 6.53 30.6 15.13 44 25.47l52-16.58c14.3-4.57 29.9 1.46 37.4 14.48l30.2 52.4c7.5 13 5 29.5-6.1 39.6l-40.4 36.8c1.1 8.3 1.7 16.8 1.7 24.5 0 9.5-.6 18-1.7 26.3l40.4 36.8c11.1 10.1 13.6 26.6 6.1 39.6l-30.2 52.4c-7.5 13-23.1 19-37.4 14.5l-52-16.6c-13.4 10.3-29.1 18.9-44 25.5l-11.7 53.2c-3.2 14.7-16.2 25.2-31.3 25.2h-60.4c-15.1 0-28.1-10.5-31.3-25.2l-11.7-53.2c-15.8-6.6-30.6-15.2-44-25.5l-51.96 16.6c-14.33 4.5-29.9-1.5-37.42-14.5l-30.24-52.4c-7.52-13-4.96-29.5 6.16-39.6l40.33-36.8c-1.1-8.3-1.67-16.8-1.67-26.3 0-7.7.57-16.2 1.67-24.5zm92.73-101.4-13.3 10.3-67.97-21.7-30.24 52.4 52.69 48-2.19 16.6c-.92 6.9-1.39 14-1.39 20.3 0 8.1.47 15.2 1.39 22.1l2.19 16.6-52.69 48 30.24 52.4 67.97-21.7 13.3 10.3c11.1 8.6 23.5 15.8 36.6 20.3l15.5 7.3 15.3 69.6h60.4l15.3-69.6 14.6-7.3c14-4.5 26.4-11.7 37.5-20.3l13.3-10.3 68 21.7 30.2-52.4-52.7-48 2.2-16.6c.9-6.9 1.4-14 1.4-21.2 0-7.2-.5-14.3-1.4-21.2l-2.2-16.6 52.7-48-30.2-52.4-68 21.7-13.3-10.3c-11.1-8.6-23.5-15.8-37.5-21.2l-14.6-6.4L286.2 32h-60.4l-15.3 69.6L195 108c-13.1 5.4-25.5 12.6-36.6 21.2z"
+						></path>
+					</svg>
+					<span>Account</span>
+				</a>
+
+				<a
+					class="flex flex-row items-center w-full px-3 py-4 md:px-6 hover:bg-slate-100"
+					href="/settings/pro"
+				>
+					<svg
+						class="w-6 h-6 mr-4 opacity-75 stroke-current"
+						viewBox="0 0 24 25"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M11.7691 15.5L8.99986 12.7308M11.7691 15.5C13.0584 15.0096 14.2954 14.3912 15.4613 13.6539M11.7691 15.5L11.7691 20.1154C11.7691 20.1154 14.5659 19.6077 15.4613 18.2692C16.4582 16.7739 15.4613 13.6539 15.4613 13.6539M8.99986 12.7308C9.49107 11.4565 10.1096 10.2349 10.846 9.08473C11.9215 7.36505 13.4192 5.94912 15.1964 4.97164C16.9736 3.99415 18.9714 3.48761 20.9997 3.50019C20.9997 6.01092 20.2797 10.4232 15.4613 13.6539M8.99986 12.7308H4.38454C4.38454 12.7308 4.89222 9.93395 6.23067 9.03858C7.72603 8.04167 10.846 9.03858 10.846 9.03858M15.8347 9.23082C15.6785 9.38703 15.4252 9.38703 15.269 9.23082C15.1128 9.07461 15.1128 8.82134 15.269 8.66513M15.8347 9.23082C15.9909 9.07461 15.9909 8.82135 15.8347 8.66514C15.6785 8.50893 15.4252 8.50892 15.269 8.66513M15.8347 9.23082L15.269 8.66513M4.84607 16.8846C3.46147 18.0477 2.99994 21.5 2.99994 21.5C2.99994 21.5 6.4522 21.0384 7.61526 19.6538C8.27064 18.8785 8.26141 17.6877 7.53219 16.9677C7.1734 16.6253 6.70078 16.4274 6.20503 16.412C5.70928 16.3967 5.22534 16.565 4.84607 16.8846Z"
+							stroke="stroke-current"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						></path>
+					</svg>
+					<span>Pro Subscription</span>
+				</a>
+			</div>
+		</div>
+
+		<div class="flex-1">
+			<div class="p-8 bg-white border rounded-lg text-slate-800">
+				<h2 class="mb-4 text-xl font-semibold text-red-600">Delete account</h2>
+				<p class="mb-10">
+					Your personal data will be deleted permanently when you delete your account on Zouhair
+					Blog. This action is irreversible.
+				</p>
+				<div class="">
+					<button
+						class="px-3 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-lg"
+						onclick="my_modal_1.showModal()"
+					>
+						Delete your account
+					</button>
+				</div>
+				<dialog id="my_modal_1" class="transform -translate-y-32 modal top-32">
+					<div class="p-4 bg-white md:p-8 modal-box">
+						<div class="mb-4 text-center">
+							<h1 class="text-2xl font-bold tracking-tight">Are you sure you want to do this?</h1>
+							<p class="font-bold text-red-600">This is extremely important</p>
+						</div>
+						<div class="pb-4 mb-4 space-y-3 prose border-b">
+							<p>
+								We'll immediately delete your profile information and blog posts (if any). Your
+								posts, comments and replies published on Zouhair Blog will not be deleted. To do so,
+								please delete them manually.
+								<strong>This action is irreversible.</strong>
+							</p>
+							<p>After you delete your account, your username will be up for grabs.</p>
+						</div>
+						<div>
+							<label class="flex flex-row flex-wrap items-start mb-5">
+								<span class="block w-full mb-2 mr-5 text-sm shrink-0 md:w-56 md:mb-0">
+									Reason for deactivating (optional):
+								</span>
+								<div class="flex flex-col w-full md:w-auto md:flex-1">
+									<textarea
+										placeholder="Your feedback matters"
+										class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+										style="height: 106.667px !important"
+									></textarea>
+								</div>
+							</label>
+							<label class="flex flex-row flex-wrap items-start mb-5">
+								<span class="block w-full mb-2 mr-5 text-sm shrink-0 md:w-56 md:mb-0">
+									Enter email address:
+								</span>
+								<div class="flex flex-col w-full md:w-auto md:flex-1">
+									<input
+										type="email"
+										placeholder="Enter your email address"
+										class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									/>
+								</div>
+							</label>
+							<label class="flex flex-row flex-wrap items-start mb-5">
+								<span class="block w-full mb-2 mr-5 text-sm shrink-0 md:w-56 md:mb-0">
+									To verify, type
+									<code class="p-1 bg-slate-100">delete my account</code>
+									:
+								</span>
+								<div class="flex flex-col w-full md:w-auto md:flex-1">
+									<input
+										type="text"
+										placeholder="delete my account"
+										class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									/>
+								</div>
+							</label>
+							<div class="flex flex-row justify-between pt-4 border-t">
+								<button
+									class="px-3 py-1 text-xs font-medium text-white bg-red-600 border border-transparent rounded-lg sm:text-base hover:bg-red-600"
+								>
+									Delete My Account!
+								</button>
+
+								<form method="dialog">
+									<button
+										class="block px-3 py-1 text-xs font-bold bg-transparent border rounded-lg sm:text-base btn text-slate-700 border-slate-300"
+									>
+										Cancel
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<form method="dialog" class="modal-backdrop">
+						<button>close</button>
+					</form>
+				</dialog>
+			</div>
+		</div>
+	</div>
+</section>
+<%- include("../components/loggedFooter"); %>

@@ -132,6 +132,14 @@ exports.resetpassword = function (req, res) {
 	res.send(`Resetpassword Form => ${req.body.email}`);
 };
 
+exports.viewAccountScreen = (req, res) => {
+	res.render('pages/AccountSettingsPage');
+};
+
+exports.viewProScreen = (req, res) => {
+	res.render('pages/ProSettingsPage');
+};
+
 exports.search = function (req, res) {
 	res.render('pages/SearchPage', { body: req.body.query });
 };

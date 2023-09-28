@@ -22,6 +22,8 @@ router.get(
 	userControllers.viewNotificationsScreen
 );
 router.get('/search', userControllers.viewSearchScreen);
+router.get('/settings/account', userControllers.mustBeLoggedIn, userControllers.viewAccountScreen);
+router.get('/settings/pro', userControllers.mustBeLoggedIn, userControllers.viewProScreen);
 
 router.post('/login', userControllers.login);
 router.post('/register', userControllers.register);
