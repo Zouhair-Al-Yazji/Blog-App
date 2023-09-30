@@ -85,40 +85,33 @@ class Post {
 	}
 }
 
-Post.findSingleById = function (id) {
+Post.reusablePostQuery = function (uniqueOperations) {
 	return new Promise(async (resolve, reject) => {
-		if (typeof id !== 'string' || !ObjectId.isValid(id)) {
-			reject();
-			return;
-		}
+		let aggregateOperations = uniqueOperations.concat([
+			// fond post author
+			{
+				$lookup: {
+					from: 'users',
+					localField: 'author',
+					foreignField: '_id',
+					as: 'authorDocument',
+				},
+			},
+			// control properties
+			{
+				$project: {
+					title: 1,
+					imgUrl: 1,
+					category: 1,
+					readLength: 1,
+					body: 1,
+					createdDate: 1,
+					author: { $arrayElemAt: ['$authorDocument', 0] },
+				},
+			},
+		]);
 
-		let posts = await postsCollection
-			.aggregate([
-				// find post
-				{ $match: { _id: new ObjectId(id) } },
-				// fond post author
-				{
-					$lookup: {
-						from: 'users',
-						localField: 'author',
-						foreignField: '_id',
-						as: 'authorDocument',
-					},
-				},
-				// control properties
-				{
-					$project: {
-						title: 1,
-						imgUrl: 1,
-						category: 1,
-						readLength: 1,
-						body: 1,
-						createdDate: 1,
-						author: { $arrayElemAt: ['$authorDocument', 0] },
-					},
-				},
-			])
-			.toArray();
+		let posts = await postsCollection.aggregate(aggregateOperations).toArray();
 		posts = posts.map((post) => {
 			post.author = {
 				username: post.author.username,
@@ -126,6 +119,19 @@ Post.findSingleById = function (id) {
 			};
 			return post;
 		});
+		resolve(posts);
+	});
+};
+
+Post.findSingleById = function (postId) {
+	return new Promise(async (resolve, reject) => {
+		if (typeof postId !== 'string' || !ObjectId.isValid(postId)) {
+			reject();
+			return;
+		}
+
+		let posts = await Post.reusablePostQuery([{ $match: { _id: new ObjectId(postId) } }]);
+
 		if (posts.length) {
 			resolve(posts[0]);
 		} else {
@@ -134,4 +140,7 @@ Post.findSingleById = function (id) {
 	});
 };
 
+Post.findByAuthorId = function (authorId) {
+	return Post.reusablePostQuery([{ $match: { author: authorId } }, { $sort: { createdDate: -1 } }]);
+};
 module.exports = Post;

@@ -4,7 +4,7 @@ const router = express.Router();
 const userControllers = require('../controllers/userControllers');
 const postControllers = require('../controllers/postControllers');
 
-// user routes
+// user related routes
 router.get('/', userControllers.homePage);
 router.get('/register', userControllers.registerPage);
 router.get('/login', userControllers.loginPage);
@@ -13,7 +13,6 @@ router.get('/about', userControllers.aboutPage);
 router.get('/contact', userControllers.contactPage);
 router.get('/faqs', userControllers.faqsPage);
 router.get('/pricing', userControllers.pricingPage);
-router.get('/my-profile', userControllers.mustBeLoggedIn, userControllers.viewProfileScreen);
 router.get('/settings', userControllers.mustBeLoggedIn, userControllers.viewSettingsScreen);
 router.get('/bookmarks', userControllers.mustBeLoggedIn, userControllers.viewBookmarksScreen);
 router.get(
@@ -32,6 +31,9 @@ router.post('/logout', userControllers.logout);
 router.post('/search', userControllers.search);
 router.post('/sendEmail', userControllers.sendEmail);
 router.post('/contact', userControllers.contactForm);
+
+// profile related routes
+router.get('/profile/@:username', userControllers.ifUserExists, userControllers.viewProfileScreen);
 
 // post routes
 router.get('/create-post', userControllers.mustBeLoggedIn, postControllers.viewCreatePostScreen);

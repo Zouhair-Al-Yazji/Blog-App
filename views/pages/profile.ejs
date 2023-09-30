@@ -1,6 +1,7 @@
-<%- include("../components/loggedHeader"); %>
+<% if (user) { %> <%- include("../components/loggedHeader"); %> <% } else { %> <%-
+include("../components/Header"); %> <% } %>
 <section
-	class="relative z-40 grid w-full min-w-full min-h-full grid-cols-9 gap-2 pt-24 lg:max-w-full lg:mx-auto lg:px-20 xl:px-32"
+	class="relative z-40 grid w-full min-w-full min-h-full grid-cols-9 gap-2 pt-24 pb-10 lg:max-w-full lg:mx-auto lg:px-20 xl:px-32"
 >
 	<div
 		class="container relative z-10 col-span-9 px-4 pb-24 mx-auto mt-5 lg:border lg:border-slate-200 lg:rounded-lg"
@@ -9,11 +10,11 @@
 			<div>
 				<div class="flex flex-row flex-wrap items-start w-full py-5 mt-6 mb-4 gap-x-5 md:gap-x-0">
 					<a
-						href="/my-profile"
+						href="/profile/<%= `@${profileUsername}` %>"
 						class="relative block w-24 h-24 mb-5 overflow-hidden rounded-full bg-slate-400 md:mb-0 lg:w-32 lg:h-32"
 					>
 						<img
-							src="<%= user.avatar %>"
+							src="<%= profileAvatar %>"
 							class="block w-full h-full rounded-full"
 							alt="user image"
 							loading="lazy"
@@ -24,8 +25,8 @@
 							<div class="w-full pr-5 mb-5 md:mb-0 md:flex-1">
 								<div class="flex flex-row items-center">
 									<h1 class="text-3xl font-bold leading-9 text-">
-										<a href="/my-profile">
-											<span><%= user.username%></span>
+										<a href="/profile/<%= `@${profileUsername}` %>">
+											<span><%= profileUsername%></span>
 										</a>
 									</h1>
 								</div>
@@ -43,7 +44,7 @@
 											<li>
 												<a
 													class="flex items-center w-full text-slate-900"
-													href="https://twitter.com/intent/tweet?text=Check <%= user.username %> profile on https://hashnode.com/@ZouhairElyazji"
+													href="https://twitter.com/intent/tweet?text=Check <%= profileUsername %> profile on https://hashnode.com/@ZouhairElyazji"
 												>
 													<span>
 														<i class="text-xl ri-twitter-x-line"></i>
@@ -89,7 +90,10 @@
 				<div class="flex flex-row flex-wrap items-center w-full mx-2 mb-2 md:justify-center"></div>
 				<div class="flex flex-row items-center mx-4 mb-4 md:mb-0">
 					<i class="mr-2 ri-calendar-2-line"></i>
-					<span class="">Member Since sep, 2023</span>
+					<span class="">
+						Member Since <%= profileJoinedDate.toLocaleString('en-US', { month: 'short', day:
+						'numeric', year: 'numeric'}) %>
+					</span>
 				</div>
 			</div>
 		</div>
@@ -161,4 +165,17 @@
 	</div>
 </section>
 
-<%- include("../components/loggedNav"); %> <%- include("../components/loggedFooter"); %>
+<div class="container mx-auto max-w-[680px]">
+	<% posts.forEach((post) => { %>
+	<a href="/blog/<%= post._id %>" class="">
+		<img class="avatar-tiny" src="<%= post.author.avatar %>" />
+		<strong><%= post.title %></strong>
+		on <%= post.createdDate.getMonth() + 1 %>/<%= post.createdDate.getDate() %>/<%=
+		post.createdDate.getFullYear() %>
+	</a>
+	<% }) %>
+</div>
+
+<% if (user) { %> <%- include("../components/loggedNav"); %> <%-
+include("../components/loggedFooter"); %> <% } else { %> <%- include("../components/Footer"); %> <%
+} %>

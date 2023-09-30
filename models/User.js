@@ -125,6 +125,7 @@ class User {
 					email: this.data.email.trim().toLowerCase(),
 					password: this.data.password,
 					avatar: this.avatar,
+					joinedDate: new Date(),
 				};
 				// Hash user password
 				let salt = bcrypt.genSaltSync(10);
@@ -148,5 +149,34 @@ class User {
 		this.avatar = `https://gravatar.com/avatar/${emailHash}/?s=128`;
 	}
 }
+
+User.findByUsername = function (username) {
+	return new Promise((resolve, reject) => {
+		if (typeof username !== 'string') {
+			reject();
+			return;
+		}
+
+		usersCollection
+			.findOne({ username: username })
+			.then((userDoc) => {
+				if (userDoc) {
+					userDoc = {
+						_id: userDoc._id,
+						username: userDoc.username,
+						email: userDoc.email,
+						avatar: userDoc.avatar,
+						joinedDate: userDoc.joinedDate,
+					};
+					resolve(userDoc);
+				} else {
+					reject();
+				}
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	});
+};
 
 module.exports = User;

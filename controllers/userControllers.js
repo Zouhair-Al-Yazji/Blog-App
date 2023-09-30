@@ -1,5 +1,6 @@
 'use strict';
 const User = require('../models/User');
+const Post = require('../models/Post');
 
 exports.mustBeLoggedIn = function (req, res, next) {
 	if (req.session.user) {
@@ -8,10 +9,6 @@ exports.mustBeLoggedIn = function (req, res, next) {
 		req.flash('errors', 'You must be logged in to perform this action.');
 		req.session.save(() => res.redirect('/login'));
 	}
-};
-
-exports.viewProfileScreen = function (req, res) {
-	res.render('pages/profile');
 };
 
 exports.viewSettingsScreen = function (req, res) {
@@ -154,4 +151,31 @@ exports.homePage = function (req, res) {
 	} else {
 		res.render('pages/home/HomeGuest', { title: ': Express' });
 	}
+};
+
+exports.ifUserExists = function (req, res, next) {
+	User.findByUsername(req.params.username)
+		.then((userDocument) => {
+			req.userProfile = userDocument;
+			next();
+		})
+		.catch(() => {
+			res.status(404).render('pages/404');
+		});
+};
+
+exports.viewProfileScreen = function (req, res) {
+	Post.findByAuthorId(req.userProfile._id)
+		.then((posts) => {
+			res.render('pages/profile', {
+				posts: posts,
+				profileUsername: req.userProfile.username,
+				profileAvatar: req.userProfile.avatar,
+				profileEmail: req.userProfile.email,
+				profileJoinedDate: req.userProfile.joinedDate,
+			});
+		})
+		.catch(() => {
+			res.status(404).render('pages/404');
+		});
 };
