@@ -34,6 +34,7 @@ router.post('/contact', userControllers.contactForm);
 
 // profile related routes
 router.get('/profile/@:username', userControllers.ifUserExists, userControllers.viewProfileScreen);
+router.get('/report', userControllers.mustBeLoggedIn, userControllers.viewReportScreen);
 
 // post routes
 router.get('/create-post', userControllers.mustBeLoggedIn, postControllers.viewCreatePostScreen);

@@ -19,7 +19,7 @@ exports.createPost = function (req, res) {
 
 exports.viewSingle = async (req, res) => {
 	try {
-		let post = await Post.findSingleById(req.params.id);
+		let post = await Post.findSingleById(req.params.id, req.visitorId);
 		res.render('pages/ArticleDetailPage/ArticleDetailPage', { post: post, title: 'Express' });
 	} catch (error) {
 		res.status(404).render('pages/404', { title: 'Express' });

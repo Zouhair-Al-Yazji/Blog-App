@@ -154,7 +154,7 @@ exports.homePage = function (req, res) {
 };
 
 exports.ifUserExists = function (req, res, next) {
-	User.findByUsername(req.params.username)
+	User.findByUsername(req.params.username, req.visitorId)
 		.then((userDocument) => {
 			req.userProfile = userDocument;
 			next();
@@ -173,9 +173,14 @@ exports.viewProfileScreen = function (req, res) {
 				profileAvatar: req.userProfile.avatar,
 				profileEmail: req.userProfile.email,
 				profileJoinedDate: req.userProfile.joinedDate,
+				isProfileOwner: req.userProfile.isVisitorOwner,
 			});
 		})
 		.catch(() => {
 			res.status(404).render('pages/404');
 		});
+};
+
+exports.viewReportScreen = function (req, res) {
+	res.render('pages/ReportPage');
 };

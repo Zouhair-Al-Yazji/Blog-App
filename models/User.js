@@ -150,7 +150,7 @@ class User {
 	}
 }
 
-User.findByUsername = function (username) {
+User.findByUsername = function (username, visitorId) {
 	return new Promise((resolve, reject) => {
 		if (typeof username !== 'string') {
 			reject();
@@ -167,6 +167,7 @@ User.findByUsername = function (username) {
 						email: userDoc.email,
 						avatar: userDoc.avatar,
 						joinedDate: userDoc.joinedDate,
+						isVisitorOwner: userDoc._id.equals(visitorId),
 					};
 					resolve(userDoc);
 				} else {

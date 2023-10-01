@@ -15,7 +15,7 @@ include("../../components/Header"); %> <% } %>
 					<a href="/blog">Blog</a>
 				</li>
 				<li>
-					<a href="/blog/1">Article Title</a>
+					<a href="/blog/1"><%= post.title %></a>
 				</li>
 			</ul>
 		</div>
@@ -24,12 +24,14 @@ include("../../components/Header"); %> <% } %>
 		<div class="flex items-center justify-between mb-8">
 			<div class="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
 				<div class="flex-shrink-0">
-					<img
-						loading="lazy"
-						class="w-12 h-12 rounded-full"
-						src="<%= post.author.avatar %>"
-						alt="Image Description"
-					/>
+					<a href="/profile/@<%= post.author.username %>" class="hover:brightness-75">
+						<img
+							loading="lazy"
+							class="w-12 h-12 rounded-full"
+							src="<%= post.author.avatar %>"
+							alt="Image Description"
+						/>
+					</a>
 				</div>
 
 				<div class="grow">
@@ -38,9 +40,12 @@ include("../../components/Header"); %> <% } %>
 							<!-- Tooltip -->
 							<div class="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
 								<div class="block text-left cursor-pointer sm:mb-1">
-									<span class="font-semibold text-gray-800 hs-tooltip-toggle hover:underline">
+									<a
+										href="/profile/@<%= post.author.username %>"
+										class="font-semibold text-gray-800 hs-tooltip-toggle hover:underline"
+									>
 										<%= post.author.username %>
-									</span>
+									</a>
 
 									<!-- Dropdown Card -->
 
@@ -52,24 +57,47 @@ include("../../components/Header"); %> <% } %>
 										<div class="p-4 sm:p-5">
 											<div class="flex w-full mb-2 sm:items-center gap-x-5 sm:gap-x-3">
 												<div class="flex-shrink-0">
-													<img
-														loading="lazy"
-														class="w-8 h-8 rounded-full"
-														src="<%= post.author.avatar %>"
-														alt="Image Description"
-													/>
+													<a
+														href="/profile/@<%= post.author.username %>"
+														class="hover:brightness-75"
+													>
+														<img
+															loading="lazy"
+															class="w-8 h-8 rounded-full"
+															src="<%= post.author.avatar %>"
+															alt="Image Description"
+														/>
+													</a>
 												</div>
 
 												<div class="grow">
-													<p class="text-lg font-semibold text-dark-light">
+													<a
+														href="/profile/@<%= post.author.username %>"
+														class="text-lg font-semibold text-dark-light hover:underline"
+													>
 														<%= post.author.username %>
-													</p>
+													</a>
 												</div>
 											</div>
-											<p class="text-sm text-gray-400">
-												Leyla is a Customer Success Specialist at Preline and spends her time
-												speaking to in-house recruiters all over the world.
-											</p>
+											<% if (locals.post.author.AboutMe) { %>
+											<p class="text-sm text-gray-400"><%= locals.post.author.AboutMe %></p>
+											<% } else { %> <% if (post.isVisitorOwner) { %>
+											<div class="flex flex-row items-center my-2">
+												<a
+													href="/settings#moreAbout"
+													class="inline-flex items-center justify-center px-4 py-1 font-medium leading-6 text-center border rounded-full border-slate-200 text-align text-slate-700 outline-transparent hover:bg-slate-200"
+												>
+													<i class="mr-1 text-2xl ri-add-fill"></i>
+													<span>Add Bio</span>
+												</a>
+											</div>
+											<% } else {%>
+											<div
+												class="flex flex-row items-center justify-center w-full h-20 italic font-medium text-slate-500"
+											>
+												<p>No bio to display</p>
+											</div>
+											<% }%> <% }%>
 										</div>
 										<!-- End Body -->
 
@@ -85,7 +113,7 @@ include("../../components/Header"); %> <% } %>
 													<span class="text-gray-400">followers</span>
 												</li>
 											</ul>
-
+											<% if (!post.isVisitorOwner) { %>
 											<div>
 												<button
 													type="button"
@@ -110,6 +138,7 @@ include("../../components/Header"); %> <% } %>
 													Follow
 												</button>
 											</div>
+											<% } %>
 										</div>
 										<!-- End Footer -->
 									</div>
@@ -117,7 +146,9 @@ include("../../components/Header"); %> <% } %>
 								</div>
 							</div>
 							<!-- End Tooltip -->
+							<% if (!post.isVisitorOwner) { %>
 							<a href="#" class="ml-2 text-primary hover:font-semibold">Follow</a>
+							<% } %>
 							<ul class="text-sm text-gray-500">
 								<li
 									class="relative inline-block pr-6 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full"
@@ -135,6 +166,11 @@ include("../../components/Header"); %> <% } %>
 						<!-- Button Group -->
 						<div class="flex items-center gap-x-8 text-[#6B6B6B] text-xl">
 							<div class="space-x-1">
+								<% if (post.isVisitorOwner) { %>
+								<a href="#" class="text-primary hover:text-dark-hard">Edit</a>
+								<a href="#" class="text-red-500 hover:text-dark-hard">delete</a>
+								<% } %>
+
 								<a href="#" class="hover:text-dark-hard">
 									<i class="ri-bookmark-line"></i>
 								</a>
@@ -347,4 +383,7 @@ include("../../components/Header"); %> <% } %>
 </section>
 
 <!-- Include Footer Section -->
-<%- include("../../components/Footer") %>
+
+<% if (user) { %> <%- include("../../components/loggedNav"); %> <%-
+include("../../components/loggedFooter"); %> <% } else { %> <%- include("../../components/Footer")
+%> <% } %>
