@@ -126,6 +126,24 @@ class User {
 					password: this.data.password,
 					avatar: this.avatar,
 					joinedDate: new Date(),
+					profile: {
+						fullName: '',
+						tagline: '',
+						location: '',
+						bio: '',
+						techStack: '',
+						availableFor: '',
+						social: {
+							twitter: '',
+							instagram: '',
+							github: '',
+							stackoverflow: '',
+							facebook: '',
+							website: '',
+							linkedin: '',
+							youtube: '',
+						},
+					},
 				};
 				// Hash user password
 				let salt = bcrypt.genSaltSync(10);
@@ -168,6 +186,24 @@ User.findByUsername = function (username, visitorId) {
 						avatar: userDoc.avatar,
 						joinedDate: userDoc.joinedDate,
 						isVisitorOwner: userDoc._id.equals(visitorId),
+						profile: {
+							fullName: userDoc.profile.fullName,
+							tagline: userDoc.profile.tagline,
+							location: userDoc.profile.location,
+							bio: userDoc.profile.bio,
+							techStack: userDoc.profile.techStack,
+							availableFor: userDoc.profile.availableFor,
+							social: {
+								twitter: userDoc.profile.social.twitter,
+								instagram: userDoc.profile.social.instagram,
+								github: userDoc.profile.social.github,
+								stackoverflow: userDoc.profile.social.stackoverflow,
+								facebook: userDoc.profile.social.facebook,
+								website: userDoc.profile.social.website,
+								linkedin: userDoc.profile.social.linkedin,
+								youtube: userDoc.profile.social.youtube,
+							},
+						},
 					};
 					resolve(userDoc);
 				} else {

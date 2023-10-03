@@ -1,6 +1,7 @@
 'use strict';
 const User = require('../models/User');
 const Post = require('../models/Post');
+const Profile = require('../models/Profile');
 
 exports.mustBeLoggedIn = function (req, res, next) {
 	if (req.session.user) {
@@ -9,10 +10,6 @@ exports.mustBeLoggedIn = function (req, res, next) {
 		req.flash('errors', 'You must be logged in to perform this action.');
 		req.session.save(() => res.redirect('/login'));
 	}
-};
-
-exports.viewSettingsScreen = function (req, res) {
-	res.render('pages/Settings');
 };
 
 exports.viewBookmarksScreen = function (req, res) {
@@ -87,10 +84,11 @@ exports.register = function (req, res) {
 	user
 		.register()
 		.then(() => {
+			console.log(user);
 			req.session.user = {
+				_id: user.data._id,
 				username: user.data.username,
 				avatar: user.avatar,
-				_id: user.data._id,
 				email: user.data.email,
 			};
 			req.session.save(() => res.redirect('/'));
@@ -167,17 +165,73 @@ exports.ifUserExists = function (req, res, next) {
 exports.viewProfileScreen = function (req, res) {
 	Post.findByAuthorId(req.userProfile._id)
 		.then((posts) => {
-			res.render('pages/profile', {
+			res.render('pages/profile-page', {
 				posts: posts,
 				profileUsername: req.userProfile.username,
 				profileAvatar: req.userProfile.avatar,
 				profileEmail: req.userProfile.email,
 				profileJoinedDate: req.userProfile.joinedDate,
 				isProfileOwner: req.userProfile.isVisitorOwner,
+				profileFullName: req.userProfile.profile.fullName,
+				profileTagline: req.userProfile.profile.tagline,
+				profileLocation: req.userProfile.profile.location,
+				profileBio: req.userProfile.profile.bio,
+				profileTechStack: req.userProfile.profile.techStack,
+				profileAvailableFor: req.userProfile.profile.availableFor,
+				profileTwitter: req.userProfile.profile.social.twitter,
+				profileLinkedin: req.userProfile.profile.social.linkedin,
+				profileStackOverflow: req.userProfile.profile.social.stackoverflow,
+				profileGithub: req.userProfile.profile.social.github,
+				profileWebsite: req.userProfile.profile.social.website,
+				profileFacebook: req.userProfile.profile.social.facebook,
+				profileYoutube: req.userProfile.profile.social.youtube,
+				profileInstagram: req.userProfile.profile.social.instagram,
 			});
 		})
 		.catch(() => {
 			res.status(404).render('pages/404');
+		});
+};
+
+exports.viewSettingsScreen = function (req, res) {
+	Profile.findUserById(req.visitorId)
+		.then((userProfile) => {
+			console.log();
+			res.render('pages/Settings', {
+				profileErrors: req.flash('profileErrors'),
+				profileUsername: userProfile.username,
+				profileEmail: userProfile.email,
+				profileFullName: userProfile.profile.fullName,
+				profileTagline: userProfile.profile.tagline,
+				profileLocation: userProfile.profile.location,
+				profileBio: userProfile.profile.bio,
+				profileTechStack: userProfile.profile.techStack,
+				profileAvailableFor: userProfile.profile.availableFor,
+				profileTwitter: userProfile.profile.social.twitter,
+				profileLinkedin: userProfile.profile.social.linkedin,
+				profileStackOverflow: userProfile.profile.social.stackoverflow,
+				profileGithub: userProfile.profile.social.github,
+				profileWebsite: userProfile.profile.social.website,
+				profileFacebook: userProfile.profile.social.facebook,
+				profileYoutube: userProfile.profile.social.youtube,
+				profileInstagram: userProfile.profile.social.instagram,
+			});
+		})
+		.catch(() => {
+			res.status(404).render('pages/404');
+		});
+};
+
+exports.updateProfileScreen = function (req, res) {
+	let profile = new Profile(req.body, req.visitorId);
+	profile
+		.editProfile()
+		.then(() => {
+			res.redirect('/settings');
+		})
+		.catch((err) => {
+			req.flash('profileErrors', err);
+			req.session.save(() => res.redirect('/settings'));
 		});
 };
 

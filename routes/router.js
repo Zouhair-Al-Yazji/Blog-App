@@ -35,8 +35,10 @@ router.post('/contact', userControllers.contactForm);
 // profile related routes
 router.get('/profile/@:username', userControllers.ifUserExists, userControllers.viewProfileScreen);
 router.get('/report', userControllers.mustBeLoggedIn, userControllers.viewReportScreen);
+router.get('/settings', userControllers.mustBeLoggedIn, userControllers.updateProfileScreen);
+router.post('/settings', userControllers.mustBeLoggedIn, userControllers.updateProfileScreen);
 
-// post routes
+// post related routes
 router.get('/create-post', userControllers.mustBeLoggedIn, postControllers.viewCreatePostScreen);
 router.post('/create-post', userControllers.mustBeLoggedIn, postControllers.createPost);
 router.get('/blog/:id', postControllers.viewSingle);

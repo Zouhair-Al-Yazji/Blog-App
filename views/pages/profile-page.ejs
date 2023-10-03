@@ -4,7 +4,7 @@ include("../components/Header"); %> <% } %>
 	class="relative z-40 grid w-full min-w-full min-h-full grid-cols-9 gap-2 pt-24 pb-10 lg:max-w-full lg:mx-auto lg:px-20 xl:px-32"
 >
 	<div
-		class="container relative z-10 col-span-9 px-4 pb-24 mx-auto mt-5 lg:border lg:border-slate-200 lg:rounded-lg"
+		class="container relative z-10 col-span-9 px-4 pb-24 mx-auto mt-5 lg:border lg:border-slate-200 lg:rounded-lg xl:px-24"
 	>
 		<div class="grid">
 			<div>
@@ -26,7 +26,7 @@ include("../components/Header"); %> <% } %>
 								<div class="flex flex-row items-center">
 									<h1 class="text-3xl font-bold leading-9 text-">
 										<a href="/profile/<%= `@${profileUsername}` %>">
-											<span><%= profileUsername%></span>
+											<span><%= locals.profileFullName || user.username%></span>
 										</a>
 									</h1>
 								</div>
@@ -168,9 +168,9 @@ include("../components/Header"); %> <% } %>
 							></path>
 						</svg>
 					</a>
-					<% } %> <% if (locals.profileGithup) { %>
+					<% } %> <% if (locals.profileGithub) { %>
 					<a
-						href="<%= locals.profileGithup %>"
+						href="<%= locals.profileGithub %>"
 						target="_blank"
 						rel="noopener"
 						class="p-2 rounded-full hover:bg-slate-100"
@@ -237,14 +237,14 @@ include("../components/Header"); %> <% } %>
 					<% } %>
 				</div>
 
-				<% if (locals.address) { %>
+				<% if (locals.profileLocation) { %>
 				<div class="flex flex-row flex-wrap items-center mx-2 mb-2 md:mb-0 md:justify-center">
 					<svg class="w-4 h-4 mx-2 fill-current" viewBox="0 0 384 512">
 						<path
 							d="M192 96c-52.935 0-96 43.065-96 96s43.065 96 96 96 96-43.065 96-96-43.065-96-96-96zm0 160c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64zm0-256C85.961 0 0 85.961 0 192c0 77.413 26.97 99.031 172.268 309.67 9.534 13.772 29.929 13.774 39.465 0C357.03 291.031 384 269.413 384 192 384 85.961 298.039 0 192 0zm0 473.931C52.705 272.488 32 256.494 32 192c0-42.738 16.643-82.917 46.863-113.137S149.262 32 192 32s82.917 16.643 113.137 46.863S352 149.262 352 192c0 64.49-20.692 80.47-160 281.931z"
 						></path>
 					</svg>
-					<span><%= locals.address %></span>
+					<span><%= locals.profileLocation %></span>
 				</div>
 				<% } %>
 
@@ -262,15 +262,253 @@ include("../components/Header"); %> <% } %>
 			</div>
 		</div>
 
+		<div class="grid mb-5">
+			<div class="p-5 border rounded-lg md:px-10">
+				<div class="flex flex-row items-center justify-between pb-5 mb-5 border-b">
+					<h2 class="text-xl font-bold leading-7 text-slate-900">Articles</h2>
+					<% if (isProfileOwner) { %>
+					<a
+						href="/settings/articles"
+						class="flex flex-row items-center justify-center h-full px-3 py-1 ml-2 font-medium text-center border border-transparent rounded-full text-primary hover:bg-slate-200"
+					>
+						<svg class="w-5 h-5 mr-2 fill-current" viewBox="0 0 512 512">
+							<path
+								d="M482.696 299.276l-32.61-18.827a195.168 195.168 0 000-48.899l32.61-18.827c9.576-5.528 14.195-16.902 11.046-27.501-11.214-37.749-31.175-71.728-57.535-99.595-7.634-8.07-19.817-9.836-29.437-4.282l-32.562 18.798a194.125 194.125 0 00-42.339-24.48V38.049c0-11.13-7.652-20.804-18.484-23.367-37.644-8.909-77.118-8.91-114.77 0-10.831 2.563-18.484 12.236-18.484 23.367v37.614a194.101 194.101 0 00-42.339 24.48L105.23 81.345c-9.621-5.554-21.804-3.788-29.437 4.282-26.36 27.867-46.321 61.847-57.535 99.595-3.149 10.599 1.47 21.972 11.046 27.501l32.61 18.827a195.168 195.168 0 000 48.899l-32.61 18.827c-9.576 5.528-14.195 16.902-11.046 27.501 11.214 37.748 31.175 71.728 57.535 99.595 7.634 8.07 19.817 9.836 29.437 4.283l32.562-18.798a194.08 194.08 0 0042.339 24.479v37.614c0 11.13 7.652 20.804 18.484 23.367 37.645 8.909 77.118 8.91 114.77 0 10.831-2.563 18.484-12.236 18.484-23.367v-37.614a194.138 194.138 0 0042.339-24.479l32.562 18.798c9.62 5.554 21.803 3.788 29.437-4.283 26.36-27.867 46.321-61.847 57.535-99.595 3.149-10.599-1.47-21.972-11.046-27.501zm-65.479 100.461l-46.309-26.74c-26.988 23.071-36.559 28.876-71.039 41.059v53.479a217.145 217.145 0 01-87.738 0v-53.479c-33.621-11.879-43.355-17.395-71.039-41.059l-46.309 26.74c-19.71-22.09-34.689-47.989-43.929-75.958l46.329-26.74c-6.535-35.417-6.538-46.644 0-82.079l-46.329-26.74c9.24-27.969 24.22-53.869 43.929-75.969l46.309 26.76c27.377-23.434 37.063-29.065 71.039-41.069V44.464a216.79 216.79 0 0187.738 0v53.479c33.978 12.005 43.665 17.637 71.039 41.069l46.309-26.76c19.709 22.099 34.689 47.999 43.929 75.969l-46.329 26.74c6.536 35.426 6.538 46.644 0 82.079l46.329 26.74c-9.24 27.968-24.219 53.868-43.929 75.957zM256 160c-52.935 0-96 43.065-96 96s43.065 96 96 96 96-43.065 96-96-43.065-96-96-96zm0 160c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64z"
+							></path>
+						</svg>
+						<span>Manage articles</span>
+					</a>
+					<% } %>
+				</div>
+
+				<% if (posts.length) { %>
+				<div class="flex flex-col items-center gap-6 sm:gap-4 md:gap-5 lg:gap-6">
+					<% posts.forEach((post) => { %>
+					<article
+						class="w-full first-of-type:border-t-0 border-t lg:!border border-slate-200 rounded-none lg:rounded-2xl pt-5 md:pt-8 lg:p-6 lg:pb-5 bg-white flex flex-col gap-4 md:gap-5"
+					>
+						<section class="flex flex-col gap-2 sm:gap-4">
+							<div class="flex flex-col gap-6">
+								<div class="flex flex-row items-center justify-between">
+									<div class="flex flex-row items-center justify-start gap-3">
+										<a class="rounded-full" href="<%= post.author.avatar %>">
+											<div
+												class="relative flex items-center justify-center w-10 h-10 overflow-hidden rounded-full cursor-pointer bg-slate-100"
+											>
+												<div class="w-full h-full">
+													<img
+														alt="<%= profileFullName %>"
+														src="<%= post.author.avatar %>"
+														decoding="async"
+														class="object-cover"
+														loading="lazy"
+														class="absolute inset-0 w-full h-full text-transparent"
+													/>
+												</div>
+											</div>
+										</a>
+										<div class="flex flex-col">
+											<div class="flex flex-row items-center justify-start gap-1 text-sm">
+												<div class="flex gap-2">
+													<a href="/profile/<%= `@${profileUsername}` %>">
+														<span class="font-semibold cursor-pointer text-slate-700">
+															<%= profileFullName %>
+														</span>
+													</a>
+												</div>
+											</div>
+											<div class="flex flex-row items-center justify-start gap-1">
+												<div class="flex-row items-center justify-start hidden gap-1 sm:flex">
+													<a
+														target="_blank"
+														rel="noopener"
+														href="/profile/<%= `@${profileUsername}` %>"
+													>
+														<p class="hidden text-sm font-normal text-slate-500 sm:block">
+															<%= `@${profileUsername}` %>
+														</p>
+													</a>
+													<p class="hidden text-sm font-normal text-slate-500 sm:block">·</p>
+												</div>
+												<a target="_blank" rel="noopener" href="/blog/<%= post._id %>">
+													<p class="text-sm font-normal text-slate-500">
+														<%= post.createdDate.getMonth() + 1 %>/<%= post.createdDate.getDate()
+														%>,<%=post.createdDate.getFullYear() %>
+													</p>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="flex flex-col w-full gap-4 md:gap-5">
+								<div
+									class="flex flex-col justify-between w-full gap-3 md:flex-row sm:gap-4 md:gap-6"
+								>
+									<div class="flex flex-col gap-1">
+										<div>
+											<a target="_blank" href="/blog/<%= post._id %>">
+												<h1
+													class="text-base font-semibold cursor-pointer font-heading sm:text-xl sm:font-bold text-slate-700 hn-break-words"
+												>
+													<%= post.title %>
+												</h1>
+											</a>
+										</div>
+										<div class="hidden md:block">
+											<a target="_blank" href="/blog/<%= post._id %>">
+												<span
+													class="hidden text-base font-normal cursor-pointer text-slate-500 md:line-clamp-3"
+												>
+													<%= post.body %>
+												</span>
+											</a>
+										</div>
+									</div>
+									<div
+										class="w-full rounded-xl md:rounded-lg bg-slate-100 relative cursor-pointer md:basis-[180px] md:h-[108px] md:shrink-0"
+									>
+										<div class="md:hidden">
+											<div class="relative w-full pb-[56.25%]">
+												<div class="inset-0 absoltue">
+													<a
+														target="_blank"
+														class="block w-full h-full overflow-hidden rounded-xl md:rounded-lg focus:outline-none"
+														href="/blog/<%= post._id %>"
+													>
+														<span
+															class="block overflow-hidden w-[initial] h-[initial] bg-none opacity-100 border-0 m-0 p-0 absolute inset-0"
+														>
+															<img
+																alt="<%= post.title %>"
+																src="<%= post.imgUrl %>"
+																decoding="async"
+																class="absolute inset-0 object-cover w-0 h-0 max-w-full max-h-full min-w-full min-h-full p-0 border-none rounded-xl"
+															/>
+														</span>
+													</a>
+												</div>
+											</div>
+										</div>
+										<div class="hidden w-full h-full md:block">
+											<a
+												target="_blank"
+												class="block w-full h-full overflow-hidden rounded-xl md:rounded-lg focus:outline-none"
+												href="/blog/<%= post._id %>"
+											>
+												<span
+													class="block overflow-hidden w-[initial] h-[initial] bg-none opacity-100 border-0 m-0 p-0 absolute inset-0"
+												>
+													<img
+														alt="<%= post.title %>"
+														src="<%= post.imgUrl %>"
+														decoding="async"
+														class="absolute inset-0 object-cover w-0 h-0 max-w-full max-h-full min-w-full min-h-full p-0 border-none rounded-xl"
+													/>
+												</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="flex flex-col gap-5">
+							<div class="flex flex-row items-center justify-between text-sm text-slate-600">
+								<div class="flex flex-row items-center justify-start gap-2">
+									<a href="/blog/<%= post._id %>">
+										<div class="flex flex-row items-center gap-2 font-medium group text-slate-500">
+											<svg fill="none" viewBox="0 0 20 20" width="20" height="20">
+												<path
+													stroke="currentColor"
+													d="M8.709 14.155a4.793 4.793 0 0 1 5.412-6.55m-5.412 6.55a4.793 4.793 0 0 0 6.31 2.54c.1-.044.21-.06.317-.042l2.213.37c.18.03.337-.127.307-.307l-.371-2.21a.566.566 0 0 1 .041-.316 4.793 4.793 0 0 0-3.405-6.586m-5.412 6.55a5.845 5.845 0 0 1-2.682-.461.689.689 0 0 0-.385-.05l-2.695.45a.324.324 0 0 1-.373-.373l.452-2.69a.689.689 0 0 0-.05-.386 5.835 5.835 0 0 1 9.482-6.435 5.808 5.808 0 0 1 1.663 3.395"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="1.25"
+												></path>
+											</svg>
+											<span class="text-slate-600 group-hover:underline">Discuss</span>
+										</div>
+									</a>
+									<p class="font-bold text-slate-400">·</p>
+									<p>10 likes</p>
+								</div>
+								<div class="flex flex-row items-center gap-1">
+									<div class="items-center hidden gap-2 sm:flex">
+										<a target="_blank" rel="noopener" href="/blog/<%= post._id %>">
+											<div
+												class="flex items-center justify-start gap-1 rounded-full px-2 py-1 bg-blue-50 hover:bg-blue-100 max-w-[220px] text-xs font-medium text-primary hover:text-primary text-left"
+											>
+												<div>
+													<svg fill="none" viewBox="0 0 16 16" width="16" height="16">
+														<path
+															stroke="currentColor"
+															d="M10.957 7.4V5M2.583 8h2.334M2.583 5.333h2.334m-2.334 5.334h2.334M5.764 14h5.639a2.007 2.007 0 0 0 2.014-2V4c0-1.105-.902-2-2.014-2h-5.64A2.007 2.007 0 0 0 3.75 4v8c0 1.105.902 2 2.014 2Z"
+															stroke-linecap="round"
+														></path>
+													</svg>
+												</div>
+												<span class="truncate"><%= post.category %></span>
+											</div>
+										</a>
+										<!-- Comment For Now -->
+										<!-- <a href="/n/pwa?source=tags_feed_article">
+													<div
+														class="flex justify-start items-center rounded-full px-2 py-1 cursor-pointer text-xs font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 w-min max-w-[126px] truncate text-left"
+													>
+														<span class="truncate">PWA</span>
+													</div>
+												</a> -->
+										<div class="w-px h-3 bg-slate-200"></div>
+									</div>
+									<button class="bookmark-button group">
+										<span class="text-slate-500 group-hover:text-blue-600">
+											<svg fill="none" viewBox="0 0 20 20" width="20" height="20">
+												<path
+													stroke="currentColor"
+													d="M10 6.77v1.874m0 0v1.875m0-1.875h1.875m-1.875 0H8.125M7.083 2.5h5.834a2.5 2.5 0 0 1 2.5 2.5v12.5l-4.98-3.065a.833.833 0 0 0-.874 0L4.583 17.5V5a2.5 2.5 0 0 1 2.5-2.5Z"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="1.25"
+												></path>
+											</svg>
+										</span>
+									</button>
+								</div>
+							</div>
+						</section>
+					</article>
+					<% }) %>
+				</div>
+				<% } else { %>
+				<div
+					class="flex flex-col items-center justify-center w-full h-20 italic font-medium text-slate-500"
+				>
+					<% if (isProfileOwner) { %>
+					<div class="flex flex-row items-center my-2">
+						<a
+							href="/create-post"
+							class="inline-flex items-center justify-center px-4 py-1 font-medium leading-6 text-center border rounded-full border-slate-200 text-align text-slate-700 outline-transparent hover:bg-slate-200"
+						>
+							<i class="mr-1 text-2xl ri-pencil-line"></i>
+							<span>Create Article</span>
+						</a>
+					</div>
+					<% } %>
+					<p>No articles to display</p>
+				</div>
+				<% } %>
+			</div>
+		</div>
+
 		<div class="grid grid-cols-9 mb-5">
 			<div class="grid grid-cols-6 col-span-9 gap-5">
 				<div
 					class="col-span-6 min-h-[30vh] border border-slate-200 rounded-lg p-5 md:px-10 lg:col-span-2"
 				>
 					<h2 class="mb-5 text-xl font-bold leading-7 text-slate-900">About me</h2>
-					<% if (locals.profileAboutMe) { %>
+					<% if (locals.profileBio) { %>
 					<div class="max-w-[65ch] text-slate-600 text-base leading-7 break-normal">
-						<p><%= locals.profileAboutMe %></p>
+						<p><%= locals.profileBio %></p>
 					</div>
 					<% } else { %> <% if (isProfileOwner) { %>
 					<div class="flex flex-row items-center my-2">
@@ -298,15 +536,9 @@ include("../components/Header"); %> <% } %>
 					class="col-span-6 min-h-[30vh] border border-slate-200 rounded-lg p-5 md:px-10 md:col-span-3 lg:col-span-2"
 				>
 					<h2 class="mb-5 text-xl font-bold leading-7 text-slate-900">My Tech Stack</h2>
-					<% if (locals.profileTechStack) { %> <% locals.profileTechStack.forEach((skill) => { %>
+					<% if (locals.profileTechStack) { %>
 					<div class="flex flex-row flex-wrap items-center break-normal">
-						<a
-							href="/n/<%= skill.toLowerCase() %>"
-							class="p-2 mb-2 mr-2 border rounded bg-slate-100 hover:border-slate-500"
-						>
-							<%= skill %>
-						</a>
-						<% }) %>
+						<%= locals.profileTechStack%>
 					</div>
 					<% } else { %> <% if (isProfileOwner) { %>
 					<div class="flex flex-row items-center">
@@ -382,18 +614,6 @@ include("../components/Header"); %> <% } %>
 		</div>
 	</div>
 </section>
-
-<div class="container mx-auto max-w-[680px]">
-	<% posts.forEach((post) => { %>
-	<a href="/blog/<%= post._id %>" class="">
-		<img class="avatar-tiny" src="<%= post.author.avatar %>" />
-		<strong><%= post.title %></strong>
-		on <%= post.createdDate.getMonth() + 1 %>/<%= post.createdDate.getDate() %>/<%=
-		post.createdDate.getFullYear() %>
-	</a>
-	<% }) %>
-</div>
-
 <% if (user) { %> <%- include("../components/loggedNav"); %> <%-
 include("../components/loggedFooter"); %> <% } else { %> <%- include("../components/Footer"); %> <%
 } %>

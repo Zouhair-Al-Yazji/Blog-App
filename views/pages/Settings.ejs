@@ -55,7 +55,7 @@
 		</div>
 
 		<div class="flex-1">
-			<div class="p-8 bg-white border rounded-lg">
+			<form method="POST" action="/settings" class="p-8 bg-white border rounded-lg">
 				<div>
 					<div class="flex flex-row flex-wrap">
 						<div class="w-full lg:w-1/2 lg:pr-10">
@@ -66,10 +66,12 @@
 								</label>
 								<input
 									type="text"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="nameField"
+									name="fullName"
 									placeholder="Enter your full name"
-									value="<%= user.username%>"
+									required
+									value="<%= profileFullName || user.username %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -78,10 +80,11 @@
 								</label>
 								<input
 									type="text"
-									class="w-full rounded-lg border bg-slate-50 p-4 text-base leading-6 outline-none text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="tagline"
+									name="tagline"
 									placeholder="Software Developer @ …"
-									value=""
+									value="<%= profileTagline %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -118,10 +121,11 @@
 								</label>
 								<input
 									type="text"
-									class="w-full rounded-lg border bg-slate-50 p-4 text-base leading-6 outline-none text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="location"
+									name="location"
 									placeholder="California, US"
-									value=""
+									value="<%= profileLocation %>"
 								/>
 							</div>
 							<h4 class="mt-10 mb-5 text-xl font-bold text-slate-900">About You</h4>
@@ -131,12 +135,15 @@
 								</label>
 								<textarea
 									type="text"
-									class="w-full rounded-lg border bg-slate-50 p-4 text-base leading-6 outline-none text-[rgb(15 23 42)] focus:border-primary focus:bg-white min-h-30"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white min-h-30"
 									id="moreAboutYou"
 									placeholder="I am a developer from …"
 									rows="6"
+									name="bio"
 									spellcheck="false"
-								></textarea>
+								>
+<%= profileBio %></textarea
+								>
 							</div>
 							<div class="mb-6">
 								<label for="skills" class="block mb-2 text-sm font-semibold text-slate-900">
@@ -146,10 +153,12 @@
 									<div class="relative mb-2">
 										<input
 											type="text"
-											class="w-full rounded-lg border bg-slate-50 p-4 text-base leading-6 outline-none text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+											class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 											id="skills"
+											name="techStack"
 											data-toggle="dropdown"
 											placeholder="Search technologies, topics, more…"
+											value="<%= profileTechStack %>"
 										/>
 										<div
 											class="absolute right-0 z-10 w-full h-auto bg-white rounded-lg shadow-lg top-100"
@@ -165,12 +174,15 @@
 								</label>
 								<textarea
 									type="text"
-									class="w-full rounded-lg border bg-slate-50 p-4 text-base leading-6 outline-none text-[rgb(15 23 42)] focus:border-primary focus:bg-white min-h-30 available-field"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white min-h-30 available-field"
 									id="availableFor"
 									rows="7"
+									name="availableFor"
 									placeholder="I am available for mentoring, …"
-								></textarea>
-								<small class="block mt-1 ml-2 leading-tight text-slate-600">
+								>
+<%= profileAvailableFor %></textarea
+								>
+								<small class="block mt-1 ml-2 leading-tight countsDown text-slate-600">
 									140/140
 									<!-- -->
 								</small>
@@ -185,10 +197,11 @@
 								<input
 									type="url"
 									pattern="(http|https)://twitter\.com\/(.+)|(http|https)://www\.twitter\.com\/(.+)"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="twitter"
+									name="twitter"
 									placeholder="https://twitter.com/johndoe"
-									value=""
+									value="<%= profileTwitter %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -198,10 +211,11 @@
 								<input
 									type="url"
 									pattern="(http|https)://instagram\.com\/(.+)|(http|https)://www\.instagram\.com\/(.+)"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="instagram"
+									name="instagram"
 									placeholder="https://instagram.com/johndoe"
-									value=""
+									value="<%= profileInstagram %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -211,10 +225,11 @@
 								<input
 									type="url"
 									pattern="(http|https)://github\.com\/(.+)|(http|https)://www\.github\.com\/(.+)"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="github"
+									name="github"
 									placeholder="https://github.com/hashnode"
-									value=""
+									value="<%= profileGithub %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -224,10 +239,11 @@
 								<input
 									type="url"
 									pattern="(http|https)://stackoverflow\.com\/(.+)|(http|https)://www\.stackoverflow\.com\/(.+)"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="stackoverflow"
+									name="stackoverflow"
 									placeholder="https://stackoverflow.com/users/22656/jon-skeet"
-									value=""
+									value="<%= profileStackOverflow %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -237,10 +253,11 @@
 								<input
 									type="url"
 									pattern="(http|https)://facebook\.com\/(.+)|(http|https)://www\.facebook\.com\/(.+)|(http|https)://fb\.com\/(.+)|(http|https)://www\.fb\.com\/(.+)"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="facebook"
+									name="facebook"
 									placeholder="https://facebook.com/johndoe"
-									value=""
+									value="<%= profileFacebook %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -249,10 +266,11 @@
 								</label>
 								<input
 									type="url"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="website"
+									name="website"
 									placeholder="https://johndoe.com"
-									value=""
+									value="<%= profileWebsite %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -262,10 +280,11 @@
 								<input
 									type="url"
 									pattern="(http|https)://linkedin\.com\/in\/(.+)|(http|https)://www\.linkedin\.com\/in/(.+)|(http|https)://linkedin\.com\/company\/(.+)|(http|https)://www\.linkedin\.com\/company/(.+)"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="linkedin"
+									name="linkedin"
 									placeholder="https://www.linkedin.com/in/johndoe"
-									value=""
+									value="<%= profileLinkedin %>"
 								/>
 							</div>
 							<div class="mb-6">
@@ -275,10 +294,11 @@
 								<input
 									type="url"
 									pattern="(http|https)://youtube\.com\/channel\/(.+)|(http|https)://www\.youtube\.com\/channel\/(.+)|(http|https)://youtube\.com\/c\/(.+)|(http|https)://www\.youtube\.com\/c\/(.+)|(http|https)://youtube\.com\/@([a-zA-Z0-9._-]+)|(http|https)://www\.youtube\.com\/@([a-zA-Z0-9._-]+)"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="youtube"
+									name="youtube"
 									placeholder="https://www.youtube.com/channel/channel-name"
-									value=""
+									value="<%= profileYoutube %>"
 								/>
 							</div>
 							<h4 class="mt-10 mb-5 text-xl font-bold text-slate-900">Profile Identity</h4>
@@ -294,10 +314,12 @@
 									<input
 										type="text"
 										maxlength="20"
-										class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+										class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 										id="username"
+										name="username"
 										placeholder=""
-										value="<%= user.username%>"
+										required
+										value="<%= profileUsername %>"
 									/>
 									<div class="absolute top-0 right-0 mt-4 mr-4 z-100"></div>
 								</div>
@@ -313,10 +335,12 @@
 								</small>
 								<input
 									type="email"
-									class="w-full rounded-lg border bg-slate-50 p-4 outline-none text-base leading-6 text-[rgb(15 23 42)] focus:border-primary focus:bg-white"
+									class="w-full p-4 text-base leading-6 border rounded-lg outline-none bg-slate-50 text-slate-900 focus:border-primary focus:bg-white"
 									id="email"
+									name="email"
 									placeholder=""
-									value="<%= user.email%>"
+									required
+									value="<%= profileEmail %>"
 								/>
 							</div>
 						</div>
@@ -325,11 +349,34 @@
 
 				<div class="pt-4 mt-5">
 					<button
+						type="submit"
 						class="px-4 py-2 text-lg leading-7 transition-colors duration-150 border rounded-full border-primary text-primary hover:shadow hover:bg-slate-100"
 					>
 						Update
 					</button>
 				</div>
+			</form>
+
+			<div class="mt-8">
+				<!-- Profile Message Error -->
+				<% profileErrors.forEach((message) => { %>
+				<div class="alert alert-error">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="w-6 h-6 stroke-current shrink-0"
+						fill="none"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+						/>
+					</svg>
+					<span><%= message %></span>
+				</div>
+				<% }) %>
 			</div>
 		</div>
 	</div>

@@ -236,3 +236,29 @@ if (createPostForm) {
 		}
 	});
 }
+
+// handle the textarea
+const availableForTextarea = document.getElementById('availableFor');
+const countDown = document.querySelector('.countsDown');
+const maxLength = 140;
+
+if (availableForTextarea) {
+	availableForTextarea.addEventListener('input', updateCountDown);
+	function updateCountDown() {
+		let currentLength = availableForTextarea.value.length;
+		const charactersRemaining = maxLength - currentLength;
+
+		if (charactersRemaining > 0) {
+			countDown.textContent = `${charactersRemaining}/140`;
+		} else {
+			countDown.textContent = `Character limit reached`;
+			setTimeout(() => {
+				// Clear the excess characters after 1 second
+				availableForTextarea.value = availableForTextarea.value.slice(0, maxLength);
+			}, 1000);
+			currentLength = maxLength; // Update currentLength
+		}
+	}
+
+	updateCountDown();
+}

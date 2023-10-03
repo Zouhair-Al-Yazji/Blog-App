@@ -1,4 +1,6 @@
-<%- include("../components/Header"); %>
+<% if (user) { %> <%- include("../components/loggedHeader"); %> <% } else { %> <%-
+include("../components/Header"); %> <% } %>
+
 <!-- ====== Contact Section Start -->
 <section class="relative z-10 py-40 overflow-hidden bg-white lg:py-44">
 	<div class="container px-4 mx-auto">
@@ -138,4 +140,5 @@
 <!-- ====== Contact Section End -->
 
 <!-- Include Footer -->
-<%- include("../components/Footer"); %>
+<% if (user) { %> <%- include("../components/loggedFooter"); %> <% } else { %> <%-
+include("../components/Footer"); %> <% } %>

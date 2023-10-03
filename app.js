@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 	}
 
 	res.locals.user = req.session.user;
+	// res.locals.userProfile = req.session.user;
 	res.locals.req = req;
 	next();
 });
